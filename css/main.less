@@ -1,0 +1,194 @@
+/*
+ * Less functions
+ */
+.box-shadow(@arguments) {
+	-webkit-box-shadow: @arguments;
+	-khtml-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-o-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	-khtml-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.transition(@arguments) {
+	-webkit-transition: @arguments;
+	-khtml-transition: @arguments;
+	-moz-transition: @arguments;
+	-o-transition: @arguments;
+	transition: @arguments;
+}
+
+.transform(@arguments) {
+	-webkit-transform: @arguments;
+	-khtml-transform: @arguments;
+	-moz-transform: @arguments;
+	-o-transform: @arguments;
+	transform: @arguments;
+}
+.box-sizing(@arguments) {
+	-webkit-box-sizing: @arguments;
+	-moz-box-sizing: @arguments;
+	box-sizing: @arguments;
+}
+.font-smoothing(@arguments) {
+	-webkit-font-smoothing: @arguments;
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+	background: @color;
+	background:	-webkit-gradient(linear,
+				left bottom,
+				left top,
+				color-stop(0, @start),
+				color-stop(1, @stop));
+	background:	-ms-linear-gradient(bottom,
+				@start,
+				@stop);
+	background:	-moz-linear-gradient(center bottom,
+				@start 0%,
+				@stop 100%);
+	background:	-o-linear-gradient(@stop,
+				@start);
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.placeholder(@color) {
+	::-webkit-input-placeholder {
+		color: @color;
+	}
+	:-moz-placeholder {
+		color: @color;
+	}
+	::-moz-placeholder {
+		color: @color;
+	}
+	::-ms-input-placeholder {
+		color: @color;
+	}
+}
+
+a {
+	.transition(all .2s ease-in-out);
+}
+
+header#masthead {
+	padding: 20px;
+	border-bottom: 1px solid #e0e0e0;
+	h1 {
+		margin: 0;
+		padding: 0;
+		font-size: 0;
+		line-height: 0;
+		text-align: -9999px;
+		img {
+			display: block;
+		}
+	}
+	#mastnav {
+		font-size: 16px;
+		margin-top: 20px;
+		ul.menu,
+		.menu > ul {
+			display: table;
+			width: 100%;
+			> li {
+				width: 1%;
+				text-align: center;
+				display: table-cell;
+				> a {
+					text-decoration: none;
+					color: #666;
+					&:hover {
+						color: #000;
+					}
+				}
+				&.current_page_item {
+					a {
+						color: #000;
+					}
+				}
+			}
+		}
+
+	}
+}
+
+nav#category-nav {
+	width: 100%;
+	padding: 20px 0;
+	background: #eee;
+	ul {
+		margin: 0 auto;
+		padding: 0;
+		display: table;
+		li {
+			display: table-cell;
+			padding: 0 5px;
+			a {
+				color: #fff;
+				background: #555;
+				.border-radius(3px);
+				padding: 6px 10px;
+				text-transform: lowercase;
+				font-weight: 800;
+				text-decoration: none;
+			}
+			&:hover,
+			&.active {
+				a {
+					color: #555;
+					background: #fff;
+					.box-shadow(2px 2px 0 #555);
+				}
+			}
+		}
+	}
+}
+
+.post-loop {
+	article {
+		background: #eee;
+		border: 1px solid #e0e0e0;
+		.border-radius(3px 0 0 3px);
+		padding: 20px 0 20px 20px;
+		position: relative;
+		min-height: 110px;
+		.post-content {
+			width: 80%;
+			.box-sizing(border-box);
+			padding-right: 20px;
+		}
+		.tutorial-specs {
+			width: 20%;
+			.box-sizing(border-box);
+			background: #444;
+			color: #f0f0f0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			padding: 20px;
+			ul {
+				margin: 0;
+				padding: 0;
+				li {
+					margin: 0;
+					padding: 10px 0;
+				}
+			}
+		}
+	}
+}
+
+.page {
+	#content {
+		margin: 40px 0;
+	}
+}
