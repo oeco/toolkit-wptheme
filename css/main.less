@@ -74,6 +74,19 @@
 	}
 }
 
+body {
+	font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Lato", "Open Sans", "Helvetica", "Arial", sans-serif;
+}
+
 a {
 	.transition(all .2s ease-in-out);
 }
@@ -94,6 +107,7 @@ header#masthead {
 	#mastnav {
 		font-size: 16px;
 		margin-top: 20px;
+		font-weight: 200;
 		ul.menu,
 		.menu > ul {
 			display: table;
@@ -135,17 +149,20 @@ nav#category-nav {
 				color: #fff;
 				background: #555;
 				.border-radius(3px);
-				padding: 6px 10px;
+				padding: 6px 8px 4px 10px;
 				text-transform: lowercase;
-				font-weight: 800;
+				font-weight: 600;
 				text-decoration: none;
+				border-right: 2px solid transparent;
+				border-bottom: 2px solid transparent;
 			}
 			&:hover,
 			&.active {
 				a {
 					color: #555;
 					background: #fff;
-					.box-shadow(2px 2px 0 #555);
+					border-right: 2px solid #555;
+					border-bottom: 2px solid #555;
 				}
 			}
 		}
@@ -181,6 +198,93 @@ nav#category-nav {
 				li {
 					margin: 0;
 					padding: 10px 0;
+					position: relative;
+					cursor: default;
+					span {
+						font-weight: 600;
+						font-size: 12px;
+					}
+					&:before {
+						float: left;
+						margin: 0 10px 0 0;
+					}
+					&.difficulty {
+						&:before {
+							content: url(../img/icons/difficulty.png);
+						}
+					}
+					&.skills {
+						&:before {
+							content: url(../img/icons/skills.png);
+						}
+					}
+					&.tools {
+						&:before {
+							content: url(../img/icons/tools.png);
+						}
+					}
+					.balloon {
+						position: absolute;
+						padding-right: 35px;
+						left: -30px;
+						top: 5px;
+						opacity: 0;
+						overflow: hidden;
+						width: 0;
+						.transition(all .2s ease-in-out);
+						.content {
+							color: #333;
+							background: #fff;
+							padding: 5px 10px;
+							font-size: 12px;
+							position: relative;
+							.box-shadow(3px 3px 4px rgba(0,0,0,0.15));
+							border: 1px solid #ccc;
+							font-weight: 600;
+							a {
+								text-decoration: none;
+							}
+							ul {
+								margin: 0;
+								li {
+									padding: 5px 0;
+									border-bottom: 1px dotted #ccc;
+									&:last-child {
+										border-bottom: 0;
+									}
+								}
+							}
+							p {
+								margin: 0;
+							}
+							.center {
+								text-align: center;
+								text-transform: uppercase;
+							}
+							&:after {
+								content: '';
+								width: 0;
+								height: 0;
+								border-left: 5px solid #fff;
+								border-right: 5px solid transparent;
+								border-top: 5px solid transparent;
+								border-bottom: 5px solid transparent;
+								position: absolute;
+								right: -10px;
+								top: 10px;
+								z-index: 1000;
+							}
+						}
+					}
+					&:hover {
+						.balloon {
+							width: 150px;
+							opacity: 1;
+							left: -185px;
+							overflow: visible;
+							.transition(all .2s ease-in-out);
+						}
+					}
 				}
 			}
 		}

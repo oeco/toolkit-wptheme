@@ -38,13 +38,13 @@ add_action('after_setup_theme', 'toolkit_setup');
  */
 
 function toolkit_styles() {
+
 	wp_register_style('base', get_template_directory_uri() . '/css/base.css');
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
-	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('base', 'skeleton'));
+	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
+	
+	wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts'));
 
-	wp_enqueue_style('font-dosis', 'http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600');
-
-	wp_enqueue_style('main');
 }
 add_action('wp_enqueue_scripts', 'toolkit_styles');
 

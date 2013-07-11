@@ -17,15 +17,59 @@
 							</div>
 							<footer class="tutorial-specs">
 								<ul>
-									<li>
-										<span><?php _e('Difficulty', 'toolkit'); ?></span>
-									</li>
-									<li>
-										<span><?php _e('Tools', 'toolkit'); ?></span>
-									</li>
-									<li>
-										<span><?php _e('Skills', 'toolkit'); ?></span>
-									</li>
+
+									<?php
+									$difficulty = get_field('difficulty');
+									if($difficulty) : ?>
+										<li class="difficulty">
+											<span><?php _e('Difficulty', 'toolkit'); ?></span>
+											<div class="balloon">
+												<div class="content">
+													<p class="center"><?php echo $difficulty; ?></p>
+												</div>
+											</div>
+										</li>
+									<?php endif; ?>
+
+									<?php
+									$tools = get_field('tools');
+									if($tools) : ?>
+										<li class="tools">
+											<span><?php _e('Tools', 'toolkit'); ?></span>
+											<div class="balloon">
+												<div class="content">
+													<ul>
+														<?php
+														foreach($tools as $tool) :
+															global $post;
+															$post = $tool;
+															setup_postdata($post);
+															?>
+															<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+															<?php wp_reset_postdata(); ?>
+														<?php endforeach; ?>
+													</ul>
+												</div>
+											</div>
+										</li>
+									<?php endif; ?>
+
+									<?php
+									$skills = get_the_terms($post->ID, 'skill');
+									if($skills) : ?>
+										<li class="skills">
+											<span><?php _e('Skills', 'toolkit'); ?></span>
+											<div class="balloon">
+												<div class="content">
+													<ul>
+														<?php foreach($skills as $skill) : ?>
+															<li><a href="<?php echo get_term_link($skill, 'skill'); ?>" title="<?php $skill->name; ?>"><?php echo $skill->name; ?></a></li>
+														<?php endforeach; ?>
+													</ul>
+												</div>
+											</div>
+										</li>
+									<?php endif; ?>
 								</ul>
 							</footer>
 						</article>

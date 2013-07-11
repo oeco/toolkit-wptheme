@@ -18,6 +18,7 @@ class Toolkit_Tutorials {
 	function init() {
 		$this->register_skills_taxonomy();
 		$this->acf_fields();
+		add_action('wp_footer', array($this, 'category_colors_css'));
 	}
 
 	function register_skills_taxonomy() {
@@ -256,6 +257,31 @@ class Toolkit_Tutorials {
 				),
 				'menu_order' => 0,
 			));
+		}
+	}
+
+	function category_colors_css() {
+		$categories = get_categories(array('hide_empty' => 0));
+
+		if($categories) { ?>
+			<style type="text/css">
+				<?php foreach($categories as $cat) {
+					$color = get_field('category_color', 'category_' . $cat->term_id);
+					if($color) { ?>
+						#category-nav ul li.<?php echo $cat->slug; ?> a {
+							background-color: <?php echo $color; ?>;
+						}
+						#category-nav ul li.<?php echo $cat->slug; ?>:hover a,
+						#category-nav ul li.<?php echo $cat->slug; ?>.active a {
+							background-color: #fff;
+							color: <?php echo $color; ?>;
+							border-color: <?php echo $color; ?>;
+						}
+					<?php
+					}
+				} ?>
+			</style>
+		<?php
 		}
 	}
 }
