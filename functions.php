@@ -7,6 +7,7 @@
 require_once(TEMPLATEPATH . '/inc/tutorials.php'); // Tutorials
 require_once(TEMPLATEPATH . '/inc/tools.php'); // Tools
 require_once(TEMPLATEPATH . '/inc/glossary.php'); // Glossary
+require_once(TEMPLATEPATH . '/inc/slider.php'); // Featured slider
 
 /*
  * Toolkit theme setup
@@ -19,6 +20,7 @@ function toolkit_setup() {
 	add_theme_support('post-thumbnails');
 
 	add_image_size('featured-image', 1160, 296, true);
+	add_image_size('tool-thumbnail', 260, 260, true);
 
 	register_nav_menus(array(
 		'header_menu' => __('Header menu', 'mappress'),
@@ -109,6 +111,20 @@ function toolkit_category_header() {
 			<div class="twelve columns">
 				<h2><?php single_cat_title(); ?></h2>
 				<?php echo category_description(); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+
+function toolkit_archive_header() {
+	?>
+	<div class="archive-header eyecandy">
+		<div class="container">
+			<div class="twelve columns">
+				<?php if(is_post_type_archive()) { ?>
+					<h2><?php post_type_archive_title(); ?></h2>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

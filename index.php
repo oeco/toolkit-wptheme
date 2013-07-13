@@ -2,7 +2,11 @@
 
 get_header();
 
-toolkit_category_nav();
+if(is_front_page() || is_category()) {
+
+	toolkit_category_nav();
+
+}
 
 if(is_front_page()) {
 
@@ -11,6 +15,10 @@ if(is_front_page()) {
 } elseif(is_category()) {
 
 	toolkit_category_header();
+
+} elseif(is_archive()) {
+
+	toolkit_archive_header();
 
 }
 

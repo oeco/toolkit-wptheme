@@ -26,7 +26,7 @@
 					<?php endif; ?>
 					<div class="row">
 						<div class="nine columns">
-							<section class="post-content">
+							<section class="post-content row">
 								<?php the_content(); ?>
 							</section>
 						</div>

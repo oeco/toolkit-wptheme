@@ -29,8 +29,8 @@
 </head>
 
 <body <?php body_class(); ?>>
-
-	<header id="masthead">
+	
+	<header id="masthead" class="row">
 		<div class="container">
 			<div class="six columns">
 				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>

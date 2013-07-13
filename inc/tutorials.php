@@ -135,44 +135,6 @@ class Toolkit_Tutorials {
 				'menu_order' => 0,
 			));
 			register_field_group(array (
-				'id' => 'acf_related-tools',
-				'title' => 'Related tools',
-				'fields' => array (
-					array (
-						'post_type' => array (
-							0 => 'tool',
-						),
-						'taxonomy' => array (
-							0 => 'all',
-						),
-						'multiple' => 1,
-						'allow_null' => 1,
-						'key' => 'field_51b5f253391dc',
-						'label' => 'Tools',
-						'name' => 'tools',
-						'type' => 'post_object',
-					),
-				),
-				'location' => array (
-					array (
-						array (
-							'param' => 'post_type',
-							'operator' => '==',
-							'value' => $this->post_type,
-							'order_no' => 0,
-							'group_no' => 0,
-						),
-					),
-				),
-				'options' => array (
-					'position' => 'normal',
-					'layout' => 'no_box',
-					'hide_on_screen' => array (
-					),
-				),
-				'menu_order' => 0,
-			));
-			register_field_group(array (
 				'id' => 'acf_tutorial-files',
 				'title' => 'Tutorial files',
 				'fields' => array (
@@ -309,12 +271,14 @@ class Toolkit_Tutorials {
 						if($el->getElementsByTagname('a')->length)
 							continue;
 
-						$el->setAttribute('id', sanitize_title($el->nodeValue));
+						$name = utf8_decode($el->nodeValue);
+
+						$el->setAttribute('id', sanitize_title($name));
 						$el->setAttribute('class', 'summary-item');
 
 						$link = $dom->createElement('a');
-						$link->setAttribute('href', '#' . sanitize_title($el->nodeValue));
-						$link->nodeValue = $el->nodeValue;
+						$link->setAttribute('href', '#' . sanitize_title($name));
+						$link->nodeValue = $name;
 
 						$el->nodeValue = '';
 						$el->appendChild($link);
@@ -325,7 +289,7 @@ class Toolkit_Tutorials {
 
 			}
 
-			$content = $dom->saveHTML();
+			$content = utf8_encode($dom->saveHTML());
 
 		}
 
@@ -406,8 +370,9 @@ class Toolkit_Tutorials {
 			$files_description = get_field('files_description');
 			if($files_description) { ?>
 				<p><?php echo $files_description; ?></p>	
-			<?php
-			}
+			<?php } ?>
+		</div>
+		<?php
 	}
 
 }

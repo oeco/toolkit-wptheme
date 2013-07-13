@@ -10,21 +10,17 @@
 							<h1><?php the_title(); ?></h1>
 						</div>
 					</div>
-					<?php if(has_post_thumbnail()) : ?>
-						<div class="row">
-							<div class="twelve columns">
-								<?php the_post_thumbnail('featured-image', array('class' => 'scale-with-grid')); ?>
-							</div>
-						</div>
-					<?php endif; ?>
 					<div class="row">
 						<div class="nine columns">
-							<section class="post-content">
+							<section class="post-content row">
 								<?php the_content(); ?>
 							</section>
 						</div>
 						<div class="three columns">
 							<aside class="post-aside">
+								<div class="aside-item row">
+									<?php toolkit_tool_description(); ?>
+								</div>
 							</aside>
 						</div>
 					</div>
