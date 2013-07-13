@@ -19,6 +19,7 @@ class Toolkit_Tutorials {
 		$this->register_skills_taxonomy();
 		$this->acf_fields();
 		add_action('wp_footer', array($this, 'category_colors_css'));
+		add_action('the_content', array($this, 'content_with_hashed_headings'));
 	}
 
 	function register_skills_taxonomy() {
@@ -262,13 +263,13 @@ class Toolkit_Tutorials {
 
 	function category_colors_css() {
 		$categories = get_categories(array('hide_empty' => 0));
-
 		if($categories) { ?>
 			<style type="text/css">
 				<?php foreach($categories as $cat) {
 					$color = get_field('category_color', 'category_' . $cat->term_id);
 					if($color) { ?>
-						#category-nav ul li.<?php echo $cat->slug; ?> a {
+						#category-nav ul li.<?php echo $cat->slug; ?> a,
+						.post-header .categories .<?php echo $cat->slug; ?> {
 							background-color: <?php echo $color; ?>;
 						}
 						#category-nav ul li.<?php echo $cat->slug; ?>:hover a,
@@ -284,6 +285,156 @@ class Toolkit_Tutorials {
 		<?php
 		}
 	}
+
+	/*
+	 * Inject content titles with hash link
+	 */
+	function content_with_hashed_headings($content) {
+
+		if(get_post_type() == 'post') {
+
+			$dom = new domDocument;
+			$dom->loadHTML($content);
+
+			$tags = array('h1','h2','h3','h4','h5','h6');
+
+			foreach($tags as $tag) {
+
+				$elements = $dom->getElementsByTagname($tag);
+
+				if($elements) {
+
+					foreach($elements as $el) {
+
+						if($el->getElementsByTagname('a')->length)
+							continue;
+
+						$el->setAttribute('id', sanitize_title($el->nodeValue));
+						$el->setAttribute('class', 'summary-item');
+
+						$link = $dom->createElement('a');
+						$link->setAttribute('href', '#' . sanitize_title($el->nodeValue));
+						$link->nodeValue = $el->nodeValue;
+
+						$el->nodeValue = '';
+						$el->appendChild($link);
+
+					}
+
+				}
+
+			}
+
+			$content = $dom->saveHTML();
+
+		}
+
+		return $content;
+
+	}
+
+	function summary() {
+		wp_register_script('hashchange', get_template_directory_uri() . '/js/jquery.hashchange.min.js', array('jquery'));
+		wp_enqueue_script('toolkit-summary', get_template_directory_uri() . '/js/summary.js', array('jquery', 'hashchange'));
+		?>
+		<div class="toolkit-summary">
+			<h3><?php _e('Table of Contents', 'toolkit'); ?></h3>
+			<div class="table-of-contents">
+			</div>
+		</div>
+		<?php
+	}
+
+	function knowledge() {
+		global $post;
+		$knowledge = get_field('knowledge');
+		if(!$knowledge)
+			return false;
+		?>
+		<div class="toolkit-knowledge">
+			<h3><?php _e('Knowledge', 'toolkit'); ?></h3>
+			<?php echo $knowledge; ?>
+		</div>
+		<?php
+	}
+
+	function software() {
+		global $post;
+		$software = get_field('software');
+		if(!$software)
+			return false;
+		?>
+		<div class="toolkit-software">
+			<h3><?php _e('Software', 'toolkit'); ?></h3>
+			<?php echo $software; ?>
+		</div>
+		<?php
+	}
+
+	function tools() {
+		global $post;
+		$tools = get_field('tools');
+		if(!$tools)
+			return false;
+		?>
+		<div class="toolkit-tools">
+			<h3><?php _e('Tools', 'toolkit'); ?></h3>
+			<ul>
+				<?php foreach($tools as $tool) {
+					$post = $tool;
+					setup_postdata($post);
+					?>
+					<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+					<?php
+					wp_reset_postdata();
+				} ?>
+			</ul>
+		</div>
+		<?php
+	}
+
+	function files() {
+		global $post;
+		$files = get_field('files');
+		if(!$files)
+			return false;
+		?>
+		<div class="toolkit-files">
+			<h3><?php _e('Files', 'toolkit'); ?></h3>
+			<p class="download"><a href="<?php echo $files; ?>"><?php _e('Click here to download necessary files for this tutorial', 'toolkit'); ?></a></p>
+			<?php
+			$files_description = get_field('files_description');
+			if($files_description) { ?>
+				<p><?php echo $files_description; ?></p>	
+			<?php
+			}
+	}
+
 }
 
-$_GLOBALS['toolkit_tutorials'] = new Toolkit_Tutorials();
+$toolkit_tutorials = new Toolkit_Tutorials();
+
+function toolkit_summary() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->summary();
+}
+
+function toolkit_knowledge() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->knowledge();
+}
+
+function toolkit_software() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->software();
+}
+
+function toolkit_tools() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->tools();
+}
+
+function toolkit_files() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->files();
+}

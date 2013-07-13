@@ -7,9 +7,10 @@
 					<div class="twelve columns">
 						<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
 							<div class="post-content">
-								<header class="post-header">
-									<h2><?php the_title(); ?></h2>
-									<?php the_author(); ?>
+								<header class="post-header clearfix">
+									<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+									<p class="author icon"><?php the_author(); ?></p>
+									<?php toolkit_category_list(); ?>
 								</header>
 								<section class="post-excerpt">
 									<?php the_excerpt(); ?>
@@ -21,9 +22,9 @@
 									<?php
 									$difficulty = get_field('difficulty');
 									if($difficulty) : ?>
-										<li class="difficulty">
+										<li class="difficulty balloon-container">
 											<span><?php _e('Difficulty', 'toolkit'); ?></span>
-											<div class="balloon">
+											<div class="balloon balloon-left">
 												<div class="content">
 													<p class="center"><?php echo $difficulty; ?></p>
 												</div>
@@ -34,9 +35,9 @@
 									<?php
 									$tools = get_field('tools');
 									if($tools) : ?>
-										<li class="tools">
+										<li class="tools balloon-container">
 											<span><?php _e('Tools', 'toolkit'); ?></span>
-											<div class="balloon">
+											<div class="balloon balloon-left">
 												<div class="content">
 													<ul>
 														<?php
@@ -57,9 +58,9 @@
 									<?php
 									$skills = get_the_terms($post->ID, 'skill');
 									if($skills) : ?>
-										<li class="skills">
+										<li class="skills balloon-container">
 											<span><?php _e('Skills', 'toolkit'); ?></span>
-											<div class="balloon">
+											<div class="balloon balloon-left">
 												<div class="content">
 													<ul>
 														<?php foreach($skills as $skill) : ?>

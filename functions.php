@@ -18,6 +18,8 @@ function toolkit_setup() {
 
 	add_theme_support('post-thumbnails');
 
+	add_image_size('featured-image', 1160, 296, true);
+
 	register_nav_menus(array(
 		'header_menu' => __('Header menu', 'mappress'),
 		'footer_menu' => __('Footer menu', 'mappress')
@@ -30,6 +32,7 @@ function toolkit_setup() {
 		'before_title' => '<h2 class="widget-title">',
 		'after_title' => '</h2>'
 	));
+
 }
 add_action('after_setup_theme', 'toolkit_setup');
 
@@ -42,7 +45,7 @@ function toolkit_styles() {
 	wp_register_style('base', get_template_directory_uri() . '/css/base.css');
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
-	
+
 	wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts'));
 
 }
@@ -86,4 +89,47 @@ function toolkit_category_nav() {
 		<?php
 	}
 
+}
+
+function toolkit_home_slider() {
+	?>
+	<div class="home-slider eyecandy">
+		<div class="container">
+			<div class="twelve columns">
+			</div>
+		</div>
+	</div>
+	<?php
+}
+
+function toolkit_category_header() {
+	?>
+	<div class="cat-header eyecandy">
+		<div class="container">
+			<div class="twelve columns">
+				<h2><?php single_cat_title(); ?></h2>
+				<?php echo category_description(); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+
+function toolkit_category_list() {
+	$categories = get_the_terms($post->ID, 'category');
+	if($categories) { ?>
+		<span class="categories category-circles">
+			<?php foreach($categories as $cat) { ?>
+				<span class="balloon-container">
+					<a href="<?php echo get_term_link($cat, 'category'); ?>" class="category <?php echo $cat->slug; ?>"><?php echo $cat->name; ?></a>
+					<span class="balloon balloon-bottom">
+						<span class="content">
+							<span class="center"><a href="<?php echo get_term_link($cat, 'category'); ?>" title="<?php echo $cat->title; ?>"><?php echo $cat->name; ?></a></span>
+						</span>
+					</span>
+				</span>
+			<?php } ?>
+		</span>
+	<?php
+	}
 }
