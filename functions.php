@@ -63,7 +63,7 @@ function toolkit_acf_path() {
 }
 add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
 
-define('ACF_LITE', false);
+define('ACF_LITE', true);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
 
 /*
