@@ -1,0 +1,52 @@
+body {
+	font: 1em Georgia, "Times New Roman", Times, serif;
+	color: #000; 
+}
+
+* {
+	background: transparent !important;
+}
+
+#mastnav,
+.toolkit-summary,
+.categories.icon,
+.print.icon,
+.wp-post-image {
+	display: none !important;
+}
+
+#colophon {
+	background: white;
+}
+
+a {
+	color: #000 !important;
+	text-decoration: none !important;
+}
+
+a:after {
+	content: ' [' attr(href) ']';
+}
+
+.summary-item a:after {
+	content: '';
+}
+
+.container,
+.container .column,
+.container .columns {
+	width: 100% !important;
+	margin: 0;
+}
+
+.post-content,
+.aside-item {
+	padding: 0 !important;
+	background: #fff !important;
+	border: 0 !important;
+}
+
+.post-meta {
+	padding: 0 !important;
+	border: 0 !important;
+}

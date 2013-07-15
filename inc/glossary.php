@@ -9,6 +9,11 @@ class Toolkit_Glossary {
 	function init() {
 		$this->register_post_type();
 		$this->acf_fields();
+		add_action('save_post', array($this, 'save_post'));
+		add_filter('the_permalink', array($this, 'post_link'));
+		add_filter('post_link', array($this, 'post_link'));
+		add_action('template_redirect', array($this, 'template_redirect'));
+		add_shortcode('glossary', array($this, 'shortcode'));
 	}
 
 	function register_post_type() {
@@ -89,6 +94,47 @@ class Toolkit_Glossary {
 				'menu_order' => 0,
 			));
 		}
+	}
+
+	function save_post($post_id) {
+		if(get_post_type($post_id) == 'glossary') {
+			remove_action('save_post', array($this, 'save_post'));
+			wp_update_post(array('ID' => $post_id, 'post_title' => get_field('word')));
+			add_action('save_post', array($this, 'save_post'));
+		}
+	}
+
+	function get_permalink() {
+		global $post;
+		return get_post_type_archive_link('glossary') . '#' . sanitize_title(get_the_title());
+	}
+
+	function post_link($permalink) {
+		$post = get_post();
+		if(get_post_type($post->ID) == 'glossary')
+			return $this->get_permalink();
+		return $permalink;
+	}
+
+	function template_redirect() {
+		if(is_singular('glossary'))
+			wp_redirect($this->get_permalink(), 301);
+	}
+
+	function shortcode($atts, $content = '') {
+		extract(shortcode_atts(array(
+			'id' => null
+		), $atts));
+
+		if(!$id) return $content;
+
+		global $post;
+		$post = get_post($id);
+		setup_postdata($post);
+		$content = '<a href="' . get_permalink() . '" title="' . __('Learn more about', 'toolkit') . ' ' . get_the_title() . '" class="glossary-link">' . $content . '</a>';
+		wp_reset_postdata();
+
+		return $content;
 	}
 
 }

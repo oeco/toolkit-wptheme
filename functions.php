@@ -49,6 +49,7 @@ function toolkit_styles() {
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
 
 	wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts'));
+	wp_enqueue_style('print', get_template_directory_uri() . '/css/print.css', array('main'), '0.1', 'print');
 
 }
 add_action('wp_enqueue_scripts', 'toolkit_styles');
@@ -62,8 +63,14 @@ function toolkit_acf_path() {
 }
 add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
 
-define('ACF_LITE', true);
+define('ACF_LITE', false);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
+
+/*
+ * Shortcodes
+ */
+
+require_once(TEMPLATEPATH . '/inc/shortcodes/et-shortcodes.php');
 
 /*
  * Templates
@@ -94,14 +101,16 @@ function toolkit_category_nav() {
 }
 
 function toolkit_home_slider() {
+	query_posts(array('post_type' => 'slider'));
+	if(!have_posts())
+		return false;
+	wp_enqueue_script('toolkit-slider', get_template_directory_uri() . '/js/carousel.js', array('jquery'));
 	?>
 	<div class="home-slider eyecandy">
-		<div class="container">
-			<div class="twelve columns">
-			</div>
-		</div>
+		<?php get_template_part('section', 'slider'); ?>
 	</div>
 	<?php
+	wp_reset_query();
 }
 
 function toolkit_category_header() {
@@ -124,6 +133,8 @@ function toolkit_archive_header() {
 			<div class="twelve columns">
 				<?php if(is_post_type_archive()) { ?>
 					<h2><?php post_type_archive_title(); ?></h2>
+				<?php } elseif(is_tax()) { ?>
+					<h2><?php single_term_title(); ?></h2>
 				<?php } ?>
 			</div>
 		</div>

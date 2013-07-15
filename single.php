@@ -14,6 +14,7 @@
 								<p class="author icon"><?php the_author(); ?></p>
 								<p class="categories icon"><span class="clearfix"><?php toolkit_category_list(); ?></span></p>
 								<p class="print icon"><?php _e('Print this tutorial', 'toolkit'); ?></p>
+								<?php wp_enqueue_script('toolkit-print', get_template_directory_uri() . '/js/print.js', array('jquery')); ?>
 							</div>
 						</div>
 					</div>
