@@ -1369,6 +1369,23 @@ if ( ! function_exists( 'et_new_thumb_resize' ) ){
 	}
 }
 
+if ( ! function_exists( 'et_multisite_thumbnail' ) ){
+	function et_multisite_thumbnail( $thumbnail = '' ) {
+		// do nothing if it's not a Multisite installation or current site is the main one
+		if ( is_main_site() ) return $thumbnail;
+
+		# get the real image url
+		preg_match( '#([_0-9a-zA-Z-]+/)?files/(.+)#', $thumbnail, $matches );
+		if ( isset( $matches[2] ) ){
+			$file = rtrim( BLOGUPLOADDIR, '/' ) . '/' . str_replace( '..', '', $matches[2] );
+			if ( is_file( $file ) ) $thumbnail = str_replace( ABSPATH, trailingslashit( get_site_url( 1 ) ), $file );
+			else $thumbnail = '';
+		}
+
+		return $thumbnail;
+	}
+}
+
 if ( ! function_exists( 'et_resize_image' ) ){
 	function et_resize_image( $thumb, $new_width, $new_height, $crop ){
 		if ( is_ssl() ) $thumb = preg_replace( '#^http://#', 'https://', $thumb );
