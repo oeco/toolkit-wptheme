@@ -12,6 +12,11 @@ a,a:visited{-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s e
 header#masthead{padding:30px 0;border-bottom:1px solid #e0e0e0;}header#masthead h1{margin:0;padding:0;font-size:0;line-height:0;text-align:-9999px;}header#masthead h1 img{display:block;}
 header#masthead #mastnav{font-size:16px;margin-top:20px;font-weight:200;}header#masthead #mastnav ul.menu,header#masthead #mastnav .menu>ul{display:table;width:100%;}header#masthead #mastnav ul.menu>li,header#masthead #mastnav .menu>ul>li{width:1%;text-align:center;display:table-cell;}header#masthead #mastnav ul.menu>li>a,header#masthead #mastnav .menu>ul>li>a{text-decoration:none;color:#666;}header#masthead #mastnav ul.menu>li>a:hover,header#masthead #mastnav .menu>ul>li>a:hover{color:#000;}
 header#masthead #mastnav ul.menu>li.current_page_item a,header#masthead #mastnav .menu>ul>li.current_page_item a{color:#000;}
+header#masthead #lang{opacity:.7;margin:-10px 0;}header#masthead #lang ul{margin:0;}
+header#masthead #lang li{display:block;margin:0;padding:0;text-align:center;}header#masthead #lang li a{display:block;padding:5px 0;font-size:10px;text-decoration:none;text-transform:uppercase;opacity:.6;}
+header#masthead #lang li:hover a,header#masthead #lang li.active a{opacity:1;}
+header#masthead #lang li:hover a:before,header#masthead #lang li.active a:before{content:'((';font-size:8px;}
+header#masthead #lang li:hover a:after,header#masthead #lang li.active a:after{content:'))';font-size:8px;}
 nav#category-nav{width:100%;padding:30px 0;margin-top:-40px;background:#eef0e3;}nav#category-nav ul{margin:0 auto;padding:0;display:table;}nav#category-nav ul li{display:table-cell;padding:0 5px;}nav#category-nav ul li a{color:#fff;background:#555;-webkit-border-radius:3px;-khtml-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;padding:6px 8px 4px 10px;text-transform:lowercase;font-weight:600;text-decoration:none;border-right:2px solid transparent;border-bottom:2px solid transparent;}
 nav#category-nav ul li:hover a,nav#category-nav ul li.active a{color:#555;background:#fff;border-right:2px solid #555;border-bottom:2px solid #555;}
 .eyecandy{background:#333;color:#f0f0f0;padding:40px 0;margin:-40px 0 40px;}.eyecandy h2{font-weight:200;font-size:52px;line-height:80px;color:#f0f0f0;}

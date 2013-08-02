@@ -32,12 +32,17 @@
 	
 	<header id="masthead" class="row">
 		<div class="container">
-			<div class="six columns">
+			<div class="five columns">
 				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>
 			</div>
-			<div class="six columns">
+			<div class="five columns">
 				<nav id="mastnav">
 					<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
+				</nav>
+			</div>
+			<div class="two columns">
+				<nav id="lang">
+					<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 				</nav>
 			</div>
 		</div>
