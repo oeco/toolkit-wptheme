@@ -50,6 +50,17 @@ class Toolkit_Tools {
 		 */
 		if(function_exists("register_field_group")) {
 
+			$translate_fields = array(
+				'wysiwyg' => 'wysiwyg',
+				'text' => 'text',
+				'textarea' => 'textarea'
+			);
+
+			if(function_exists('qtrans_getLanguage')) {
+				foreach($translate_fields as &$field) {
+					$field = 'qtranslate_' . $field;
+				}
+			}
 
 			register_field_group(array(
 				'id' => 'acf_related-tools',
@@ -102,7 +113,7 @@ class Toolkit_Tools {
 						'key' => 'field_tool_references',
 						'label' => __('References', 'toolkit'),
 						'name' => 'references',
-						'type' => 'wysiwyg',
+						'type' => $translate_fields['wysiwyg'],
 						'instructions' => __('Add some links to the tool references', 'toolkit'),
 					)
 				),

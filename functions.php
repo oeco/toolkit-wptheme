@@ -63,8 +63,9 @@ function toolkit_acf_path() {
 }
 add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
 
-define('ACF_LITE', true);
+define('ACF_LITE', false);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
+include_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-qtranslate/acf-qtranslate.php');
 
 /*
  * Shortcodes

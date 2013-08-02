@@ -51,6 +51,19 @@ class Toolkit_Glossary {
 
 	function acf_fields() {
 		if(function_exists("register_field_group")) {
+
+			$translate_fields = array(
+				'wysiwyg' => 'wysiwyg',
+				'text' => 'text',
+				'textarea' => 'textarea'
+			);
+
+			if(function_exists('qtrans_getLanguage')) {
+				foreach($translate_fields as &$field) {
+					$field = 'qtranslate_' . $field;
+				}
+			}
+
 			register_field_group(array (
 				'id' => 'acf_meaning',
 				'title' => 'Meaning',
@@ -61,7 +74,7 @@ class Toolkit_Glossary {
 						'key' => 'field_51dbbda68f4eb',
 						'label' => 'Word',
 						'name' => 'word',
-						'type' => 'text',
+						'type' => $translate_fields['text'],
 						'required' => 1,
 					),
 					array (
@@ -70,7 +83,7 @@ class Toolkit_Glossary {
 						'key' => 'field_51dbbd5a42203',
 						'label' => 'Meaning',
 						'name' => 'meaning',
-						'type' => 'textarea',
+						'type' => $translate_fields['textarea'],
 						'required' => 1,
 					),
 				),

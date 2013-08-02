@@ -64,6 +64,18 @@ class Toolkit_Tutorials {
 		 */
 		if(function_exists("register_field_group")) {
 
+			$translate_fields = array(
+				'wysiwyg' => 'wysiwyg',
+				'text' => 'text',
+				'textarea' => 'textarea'
+			);
+
+			if(function_exists('qtrans_getLanguage')) {
+				foreach($translate_fields as &$field) {
+					$field = 'qtranslate_' . $field;
+				}
+			}
+
 			register_field_group(array (
 				'id' => 'acf_category-settings',
 				'title' => 'Category settings',
@@ -153,7 +165,7 @@ class Toolkit_Tutorials {
 						'key' => 'field_51dbba55b88ca',
 						'label' => 'Files description',
 						'name' => 'files_description',
-						'type' => 'textarea',
+						'type' => $translate_fields['textarea'],
 						'instructions' => 'Describe the files',
 					),
 				),
@@ -187,7 +199,7 @@ class Toolkit_Tutorials {
 						'key' => 'field_51dbb7e2b2a35',
 						'label' => 'Knowledge',
 						'name' => 'knowledge',
-						'type' => 'wysiwyg',
+						'type' => $translate_fields['wysiwyg'],
 						'instructions' => 'Describe the necessary knowledge to start working on this tutorial',
 					),
 					array (
@@ -197,7 +209,7 @@ class Toolkit_Tutorials {
 						'key' => 'field_51dbb80bb2a36',
 						'label' => 'Software',
 						'name' => 'software',
-						'type' => 'wysiwyg',
+						'type' => $translate_fields['wysiwyg'],
 						'instructions' => 'Tell a bit about how the softwares are used through the activity',
 					),
 				),

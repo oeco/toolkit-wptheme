@@ -60,6 +60,18 @@ class Toolkit_Slider {
 		 */
 		if(function_exists("register_field_group")) {
 
+			$translate_fields = array(
+				'wysiwyg' => 'wysiwyg',
+				'text' => 'text',
+				'textarea' => 'textarea'
+			);
+
+			if(function_exists('qtrans_getLanguage')) {
+				foreach($translate_fields as &$field) {
+					$field = 'qtranslate_' . $field;
+				}
+			}
+
 			register_field_group(array (
 				'id' => 'acf_slider-settings',
 				'title' => 'Slider settings',
@@ -70,7 +82,7 @@ class Toolkit_Slider {
 						'key' => 'field_51e32e3c411bd',
 						'label' => 'Link',
 						'name' => 'slider_url',
-						'type' => 'text',
+						'type' => $translate_fields['text'],
 						'instructions' => 'Link to where the slider item will redirect',
 						'required' => 1,
 					),
