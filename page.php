@@ -9,7 +9,7 @@
 						<header class="post-header row">
 							<h1><?php the_title(); ?></h1>
 						</header>
-						<section class="post-content">
+						<section class="post-content row">
 							<?php the_content(); ?>
 						</section>
 					</article>
