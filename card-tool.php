@@ -7,7 +7,7 @@
 						<?php the_post_thumbnail('tool-thumbnail', array('class' => 'scale-with-grid')); ?>
 					</div>
 				<?php endif; ?>
-				<h2><a href="<?php the_title(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 			</header>
 			<section class="post-excerpt">
 				<?php the_excerpt(); ?>
