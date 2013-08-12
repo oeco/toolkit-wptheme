@@ -40,10 +40,12 @@
 					<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
 				</nav>
 			</div>
-			<div class="two columns">
-				<nav id="lang">
-					<?php echo qtrans_generateLanguageSelectCode('text'); ?>
-				</nav>
-			</div>
+			<?php if(function_exists('qtrans_getLanguage')) : ?>
+				<div class="two columns">
+					<nav id="lang">
+						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
+					</nav>
+				</div>
+			<?php endif; ?>
 		</div>
 	</header>

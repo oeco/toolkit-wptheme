@@ -267,7 +267,9 @@ class Toolkit_Tutorials {
 
 		if(get_post_type() == 'post') {
 
-			$dom = new domDocument;
+			$content .= '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+
+			$dom = new DOMDocument('1.0', 'UTF-8');
 			$dom->loadHTML($content);
 
 			$tags = array('h1','h2','h3','h4','h5','h6');
@@ -301,7 +303,7 @@ class Toolkit_Tutorials {
 
 			}
 
-			$content = utf8_encode($dom->saveHTML());
+			$content = $dom->saveHTML();
 
 		}
 
