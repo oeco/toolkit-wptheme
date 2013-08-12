@@ -303,7 +303,7 @@ class Toolkit_Tutorials {
 
 			}
 
-			$content = $dom->saveHTML();
+			$content = @$dom->saveHTML();
 
 		}
 
