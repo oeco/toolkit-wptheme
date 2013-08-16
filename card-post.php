@@ -21,7 +21,7 @@
 							<span><?php _e('Difficulty', 'toolkit'); ?></span>
 							<div class="balloon balloon-left">
 								<div class="content">
-									<p class="center"><?php echo $difficulty; ?></p>
+									<p class="center"><?php _e($difficulty, 'toolkit'); ?></p>
 								</div>
 							</div>
 						</li>
