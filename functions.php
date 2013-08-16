@@ -15,7 +15,7 @@ require_once(TEMPLATEPATH . '/inc/slider.php'); // Featured slider
 
 function toolkit_setup() {
 	// text domain
-	//load_theme_textdomain('toolkit', get_template_directory() . '/languages');
+	load_theme_textdomain('toolkit', get_template_directory() . '/lang');
 
 	add_theme_support('post-thumbnails');
 

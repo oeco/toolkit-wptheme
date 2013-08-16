@@ -33,7 +33,11 @@
 	<header id="masthead" class="row">
 		<div class="container">
 			<div class="five columns">
-				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>
+				<?php if(function_exists('qtrans_getLanguage') && qtrans_getLanguage() == 'pt') : ?>
+					<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_pt.png" /></a></h1>
+				<?php else : ?>
+					<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>
+				<?php endif; ?>
 			</div>
 			<div class="five columns">
 				<nav id="mastnav">
