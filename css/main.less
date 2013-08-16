@@ -560,6 +560,19 @@ nav#category-nav {
 					top: 10px;
 					z-index: 1000;
 				}
+				&:before {
+					content: '';
+					width: 0;
+					height: 0;
+					border-left: 6px solid #aaa;
+					border-right: 6px solid transparent;
+					border-top: 6px solid transparent;
+					border-bottom: 6px solid transparent;
+					position: absolute;
+					right: -12px;
+					top: 9px;
+					z-index: 1000;
+				}
 			}
 		}
 		&.balloon-bottom {
@@ -577,6 +590,20 @@ nav#category-nav {
 					left: 50%;
 					margin-left: -10px;
 					top: -10px;
+					z-index: 1000;
+				}
+				&:before {
+					content: '';
+					width: 0;
+					height: 0;
+					border-left: 6px solid transparent;
+					border-right: 6px solid transparent;
+					border-top: 6px solid transparent;
+					border-bottom: 6px solid #aaa;
+					position: absolute;
+					left: 50%;
+					margin-left: -11px;
+					top: -12px;
 					z-index: 1000;
 				}
 			}
