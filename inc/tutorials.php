@@ -292,7 +292,7 @@ class Toolkit_Tutorials {
 
 						$link = $dom->createElement('a');
 						$link->setAttribute('href', '#' . sanitize_title($name));
-						$link->nodeValue = $name;
+						@$link->nodeValue = $name;
 
 						$el->nodeValue = '';
 						$el->appendChild($link);
