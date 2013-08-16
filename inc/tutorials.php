@@ -270,7 +270,7 @@ class Toolkit_Tutorials {
 			$content .= '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
 
 			$dom = new DOMDocument('1.0', 'UTF-8');
-			@$dom->loadHTML($content);
+			$dom->loadHTML($content);
 
 			$tags = array('h1','h2','h3','h4','h5','h6');
 
@@ -285,7 +285,7 @@ class Toolkit_Tutorials {
 						if($el->getElementsByTagname('a')->length)
 							continue;
 
-						$name = utf8_decode($el->nodeValue);
+						$name = $el->nodeValue;
 
 						$el->setAttribute('id', sanitize_title($name));
 						$el->setAttribute('class', 'summary-item');
@@ -303,7 +303,7 @@ class Toolkit_Tutorials {
 
 			}
 
-			$content = @$dom->saveHTML();
+			$content = $dom->saveHTML();
 
 		}
 
