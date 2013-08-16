@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Toolkit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-16 15:24-0300\n"
-"PO-Revision-Date: 2013-08-16 15:30-0300\n"
+"POT-Creation-Date: 2013-08-16 15:33-0300\n"
+"PO-Revision-Date: 2013-08-16 15:34-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: cardume <contato@cardume.art.br>\n"
 "Language: \n"
@@ -125,6 +125,18 @@ msgstr "Adicionar ou remover habilidades"
 #: ../inc/tutorials.php:41
 msgid "Choose from most used skills"
 msgstr "Escolher entre as habilidades mais utilizadas"
+
+#: ../inc/tutorials.php:117
+msgid "Easy"
+msgstr "Fácil"
+
+#: ../inc/tutorials.php:118
+msgid "Medium"
+msgstr "Médio"
+
+#: ../inc/tutorials.php:119
+msgid "Hard"
+msgstr "Difícil"
 
 #: ../inc/tutorials.php:319
 msgid "Table of Contents"
@@ -384,10 +396,6 @@ msgstr ""
 
 #: ../inc/acf/acf.php:610
 msgid "Thumbnail"
-msgstr ""
-
-#: ../inc/acf/acf.php:611
-msgid "Medium"
 msgstr ""
 
 #: ../inc/acf/acf.php:612

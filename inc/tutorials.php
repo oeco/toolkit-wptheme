@@ -114,9 +114,9 @@ class Toolkit_Tutorials {
 					array (
 						'layout' => 'vertical',
 						'choices' => array (
-							'easy' => 'Easy',
-							'medium' => 'Medium',
-							'hard' => 'Hard',
+							'easy' => __('Easy', 'toolkit'),
+							'medium' => __('Medium', 'toolkit'),
+							'hard' => __('Hard', 'toolkit'),
 						),
 						'default_value' => '',
 						'key' => 'field_51dbb13ad3ce6',
