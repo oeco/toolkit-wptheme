@@ -669,6 +669,7 @@ h4,
 h5,
 h6 {
 	&.summary-item {
+		position: relative;
 		&:hover,
 		&.active {
 			&:before {
@@ -676,6 +677,12 @@ h6 {
 				left: -50px;
 				top: 5px;
 			}
+		}
+		&:before {
+			content: url(../img/icons/summary_big.png);
+			left: -50px;
+			top: 5px;
+			position: absolute;
 		}
 	}
 }
