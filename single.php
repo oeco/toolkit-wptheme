@@ -36,6 +36,11 @@
 								<div class="aside-item row">
 									<?php toolkit_summary(); ?>
 								</div>
+								<?php if(get_field('files')) : ?>
+									<div class="aside-item row">
+										<?php toolkit_files(); ?>
+									</div>
+								<?php endif; ?>
 								<?php if(get_field('knowledge')) : ?>
 									<div class="aside-item row">
 										<?php toolkit_knowledge(); ?>
@@ -51,9 +56,9 @@
 										<?php toolkit_tools(); ?>
 									</div>
 								<?php endif; ?>
-								<?php if(get_field('files')) : ?>
+								<?php if(get_field('examples')) : ?>
 									<div class="aside-item row">
-										<?php toolkit_files(); ?>
+										<?php toolkit_examples(); ?>
 									</div>
 								<?php endif; ?>
 							</aside>

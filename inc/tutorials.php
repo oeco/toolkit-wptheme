@@ -197,7 +197,7 @@ class Toolkit_Tutorials {
 						'media_upload' => 'no',
 						'default_value' => '',
 						'key' => 'field_51dbb7e2b2a35',
-						'label' => 'Knowledge',
+						'label' => __('Knowledge', 'toolkit'),
 						'name' => 'knowledge',
 						'type' => $translate_fields['wysiwyg'],
 						'instructions' => 'Describe the necessary knowledge to start working on this tutorial',
@@ -207,10 +207,20 @@ class Toolkit_Tutorials {
 						'media_upload' => 'no',
 						'default_value' => '',
 						'key' => 'field_51dbb80bb2a36',
-						'label' => 'Software',
+						'label' => __('Software', 'toolkit'),
 						'name' => 'software',
 						'type' => $translate_fields['wysiwyg'],
 						'instructions' => 'Tell a bit about how the softwares are used through the activity',
+					),
+					array (
+						'toolbar' => 'basic',
+						'media_upload' => 'no',
+						'default_value' => '',
+						'key' => 'field_tutorial_examples',
+						'label' => __('Examples', 'toolkit'),
+						'name' => 'examples',
+						'type' => $translate_fields['wysiwyg'],
+						'instructions' => 'List some examples for this tutorial',
 					),
 				),
 				'location' => array (
@@ -349,6 +359,19 @@ class Toolkit_Tutorials {
 		<?php
 	}
 
+	function examples() {
+		global $post;
+		$examples = get_field('examples');
+		if(!$examples)
+			return false;
+		?>
+		<div class="toolkit-examples">
+			<h3><?php _e('Examples', 'toolkit'); ?></h3>
+			<?php echo $examples; ?>
+		</div>
+		<?php
+	}
+
 	function tools() {
 		global $post;
 		$tools = get_field('tools');
@@ -406,6 +429,11 @@ function toolkit_knowledge() {
 function toolkit_software() {
 	global $toolkit_tutorials;
 	return $toolkit_tutorials->software();
+}
+
+function toolkit_examples() {
+	global $toolkit_tutorials;
+	return $toolkit_tutorials->examples();
 }
 
 function toolkit_tools() {
