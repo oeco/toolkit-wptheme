@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Toolkit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-16 15:33-0300\n"
-"PO-Revision-Date: 2013-08-16 15:34-0300\n"
+"POT-Creation-Date: 2013-08-27 18:22-0300\n"
+"PO-Revision-Date: 2013-08-27 18:22-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: cardume <contato@cardume.art.br>\n"
 "Language: \n"
@@ -22,7 +22,7 @@ msgid "Difficulty"
 msgstr "Dificuldade"
 
 #: ../card-post.php:34
-#: ../inc/tutorials.php:359
+#: ../inc/tutorials.php:382
 #: ../inc/tools.php:17
 #: ../inc/tools.php:27
 msgid "Tools"
@@ -138,23 +138,30 @@ msgstr "Médio"
 msgid "Hard"
 msgstr "Difícil"
 
-#: ../inc/tutorials.php:319
-msgid "Table of Contents"
-msgstr "Sumário"
-
-#: ../inc/tutorials.php:333
+#: ../inc/tutorials.php:200
+#: ../inc/tutorials.php:343
 msgid "Knowledge"
 msgstr "Conhecimento"
 
-#: ../inc/tutorials.php:346
+#: ../inc/tutorials.php:210
+#: ../inc/tutorials.php:356
 msgid "Software"
 msgstr "Software"
 
-#: ../inc/tutorials.php:381
+#: ../inc/tutorials.php:220
+#: ../inc/tutorials.php:369
+msgid "Examples"
+msgstr "Exemplos"
+
+#: ../inc/tutorials.php:329
+msgid "Table of Contents"
+msgstr "Sumário"
+
+#: ../inc/tutorials.php:404
 msgid "Files"
 msgstr "Arquivos"
 
-#: ../inc/tutorials.php:382
+#: ../inc/tutorials.php:405
 msgid "Click here to download necessary files for this tutorial"
 msgstr "Clique aqui para baixar os arquivos necessários para este tutorial"
 
