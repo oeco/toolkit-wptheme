@@ -17,7 +17,7 @@
 				cTag.each(function() {
 					if($(this).find('.summary-item')) {
 						var item = $('<li/>').addClass($(this).attr('id')).addClass($(this).attr('class'));
-						item.append($(this).find('a').clone().text());
+						item.append($(this).clone().text());
 						container.find('ol').append(item);
 					}
 				});
