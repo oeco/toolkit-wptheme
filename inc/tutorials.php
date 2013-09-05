@@ -299,17 +299,17 @@ class Toolkit_Tutorials {
 
 						$el->setAttribute('id', sanitize_title($name));
 						$el->setAttribute('class', 'summary-item');
-
-						/*
-						 * Disable link for now
-						 *
 						$link = $dom->createElement('a');
 						$link->setAttribute('href', '#' . sanitize_title($name));
 						@$link->nodeValue = $name;
-						*/
+
+						/*
+						 * Enable link for now
+						 *
 						$link = $dom->createElement('span');
 						$link->setAttribute('data-href', '#' . sanitize_title($name));
 						@$link->nodeValue = $name;
+						*/
 
 						$el->nodeValue = '';
 						$el->appendChild($link);
