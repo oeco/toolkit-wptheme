@@ -105,7 +105,7 @@ function toolkit_home_slider() {
 	query_posts(array('post_type' => 'slider'));
 	if(!have_posts())
 		return false;
-	wp_enqueue_script('toolkit-slider', get_template_directory_uri() . '/js/carousel.js', array('jquery'));
+	wp_enqueue_script('toolkit-slider', get_template_directory_uri() . '/js/carousel.js', array('jquery'), '1.0');
 	?>
 	<div class="home-slider eyecandy">
 		<?php get_template_part('section', 'slider'); ?>
