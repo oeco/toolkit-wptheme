@@ -19,7 +19,7 @@ class Toolkit_Tutorials {
 		$this->register_skills_taxonomy();
 		$this->acf_fields();
 		add_action('wp_footer', array($this, 'category_colors_css'));
-		add_action('the_content', array($this, 'content_with_hashed_headings'));
+		add_action('the_content', array($this, 'content_with_hashed_headings'), 1, 1);
 	}
 
 	function register_skills_taxonomy() {
