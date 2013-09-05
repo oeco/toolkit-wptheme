@@ -1347,6 +1347,9 @@ function et_advanced_buttons(){
 
 if ( ! function_exists( 'et_new_thumb_resize' ) ){
 	function et_new_thumb_resize( $thumbnail, $width, $height, $alt='', $forstyle = false ){
+
+		return $thumbnail;
+
 		global $shortname;
 
 		$new_method = true;
