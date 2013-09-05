@@ -19,7 +19,7 @@ class Toolkit_Tutorials {
 		$this->register_skills_taxonomy();
 		$this->acf_fields();
 		add_action('wp_footer', array($this, 'category_colors_css'));
-		add_action('the_content', array($this, 'content_with_hashed_headings'), 1, 1);
+		add_action('the_content', array($this, 'content_with_hashed_headings'));
 	}
 
 	function register_skills_taxonomy() {
@@ -280,7 +280,7 @@ class Toolkit_Tutorials {
 			$content .= '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
 
 			$dom = new DOMDocument('1.0', 'UTF-8');
-			@$dom->loadHTML($content);
+			$dom->loadHTML($content);
 
 			$tags = array('h1','h2','h3','h4','h5','h6');
 
@@ -301,14 +301,14 @@ class Toolkit_Tutorials {
 						$el->setAttribute('class', 'summary-item');
 						$link = $dom->createElement('a');
 						$link->setAttribute('href', '#' . sanitize_title($name));
-						@$link->nodeValue = $name;
+						$link->nodeValue = htmlspecialchars($name);
 
 						/*
 						 * Enable link for now
 						 *
 						$link = $dom->createElement('span');
 						$link->setAttribute('data-href', '#' . sanitize_title($name));
-						@$link->nodeValue = $name;
+						$link->nodeValue = $name;
 						*/
 
 						$el->nodeValue = '';
@@ -320,7 +320,7 @@ class Toolkit_Tutorials {
 
 			}
 
-			@$content = $dom->saveHTML();
+			$content = $dom->saveHTML();
 
 		}
 
