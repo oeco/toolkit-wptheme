@@ -37,7 +37,7 @@
 			var height = $(this).height();
 			var position = $(this).css('position');
 
-			var start = offset.top - settings.startPadding;
+			var start = offset.top - (settings.startPadding + parseInt($('html').css('marginTop')));
 
 			ghostEl
 				.css({
@@ -59,7 +59,7 @@
 
 						self.css({
 							position: 'fixed',
-							top: settings.startPadding,
+							top: settings.startPadding + parseInt($('html').css('marginTop')),
 							width: width,
 							height: height
 						});
