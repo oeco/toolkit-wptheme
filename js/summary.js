@@ -23,6 +23,14 @@
 				});
 			}
 		});
+
+		$('.aside-item.toolkit-summary').followScroll({
+			startPadding: 40,
+			stopFollow: {
+				element: $('.post-content'),
+				stopAtEnd: true
+			}
+		});
 	}
 
 	/*

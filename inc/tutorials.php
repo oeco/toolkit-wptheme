@@ -330,7 +330,8 @@ class Toolkit_Tutorials {
 
 	function summary() {
 		wp_register_script('hashchange', get_template_directory_uri() . '/js/jquery.hashchange.min.js', array('jquery'));
-		wp_enqueue_script('toolkit-summary', get_template_directory_uri() . '/js/summary.js', array('jquery', 'hashchange'));
+		wp_register_script('follow-scroll', get_template_directory_uri() . '/js/jquery.followScroll.js', array('jquery'));
+		wp_enqueue_script('toolkit-summary', get_template_directory_uri() . '/js/summary.js', array('jquery', 'hashchange', 'follow-scroll'));
 		?>
 		<div class="toolkit-summary">
 			<h3><?php _e('Table of Contents', 'toolkit'); ?></h3>

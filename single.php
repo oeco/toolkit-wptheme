@@ -25,46 +25,46 @@
 							</div>
 						</div>
 					<?php endif; ?>
-					<div class="row">
-						<div class="nine columns">
-							<section class="post-content row">
-								<?php the_content(); ?>
-							</section>
-						</div>
-						<div class="three columns">
-							<aside class="post-aside">
-								<div class="aside-item row">
-									<?php toolkit_summary(); ?>
-								</div>
-								<?php if(get_field('files')) : ?>
-									<div class="aside-item row">
-										<?php toolkit_files(); ?>
-									</div>
-								<?php endif; ?>
-								<?php if(get_field('knowledge')) : ?>
-									<div class="aside-item row">
-										<?php toolkit_knowledge(); ?>
-									</div>
-								<?php endif; ?>
-								<?php if(get_field('software')) : ?>
-									<div class="aside-item row">
-										<?php toolkit_software(); ?>
-									</div>
-								<?php endif; ?>
-								<?php if(get_field('tools')) : ?>
-									<div class="aside-item row">
-										<?php toolkit_tools(); ?>
-									</div>
-								<?php endif; ?>
-								<?php if(get_field('examples')) : ?>
-									<div class="aside-item row">
-										<?php toolkit_examples(); ?>
-									</div>
-								<?php endif; ?>
-							</aside>
-						</div>
-					</div>
 				</header>
+				<div class="row">
+					<div class="nine columns">
+						<section class="post-content row">
+							<?php the_content(); ?>
+						</section>
+					</div>
+					<div class="three columns">
+						<aside class="post-aside">
+							<div class="aside-item row toolkit-summary">
+								<?php toolkit_summary(); ?>
+							</div>
+							<?php if(get_field('files')) : ?>
+								<div class="aside-item row">
+									<?php toolkit_files(); ?>
+								</div>
+							<?php endif; ?>
+							<?php if(get_field('knowledge')) : ?>
+								<div class="aside-item row">
+									<?php toolkit_knowledge(); ?>
+								</div>
+							<?php endif; ?>
+							<?php if(get_field('software')) : ?>
+								<div class="aside-item row">
+									<?php toolkit_software(); ?>
+								</div>
+							<?php endif; ?>
+							<?php if(get_field('tools')) : ?>
+								<div class="aside-item row">
+									<?php toolkit_tools(); ?>
+								</div>
+							<?php endif; ?>
+							<?php if(get_field('examples')) : ?>
+								<div class="aside-item row">
+									<?php toolkit_examples(); ?>
+								</div>
+							<?php endif; ?>
+						</aside>
+					</div>
+				</div>
 			</article>
 		</div>
 	</section>
