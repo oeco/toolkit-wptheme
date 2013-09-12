@@ -4,7 +4,7 @@
 			<header class="post-header">
 				<?php if(has_post_thumbnail()) : ?>
 					<div class="tool-thumbnail">
-						<?php the_post_thumbnail('tool-thumbnail', array('class' => 'scale-with-grid')); ?>
+						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('tool-thumbnail', array('class' => 'scale-with-grid')); ?></a>
 					</div>
 				<?php endif; ?>
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
