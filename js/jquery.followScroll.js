@@ -42,6 +42,7 @@
 			ghostEl
 				.css({
 					visibility: 'hidden',
+					opacity: '0',
 					display: 'none'
 				})
 				.addClass('follow-scroll-ghost')
