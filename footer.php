@@ -1,3 +1,5 @@
+<?php do_action('toolkit_before_colophon'); ?>
+
 <div id="colophon">
 	<div class="container">
 		<div class="twelve columns">
