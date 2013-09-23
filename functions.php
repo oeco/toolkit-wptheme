@@ -184,14 +184,37 @@ function toolkit_qtranslate_edit_taxonomies() {
 add_action('admin_init', 'toolkit_qtranslate_edit_taxonomies');
 
 function toolkit_before_colophon_widget() {
-	register_sidebar( array(
-		'name' => __('Footer form', 'toolkit'),
-		'id' => 'toolkit_footer_form',
-		'before_widget' => '<div>',
-		'after_widget' => '</div>',
-		'before_title' => '<h2 class="widgettitle">',
-		'after_title' => '</h2>',
-	));
+
+	$lang_widgets = array();
+
+	if(function_exists('qtrans_getLanguage')) {
+		global $q_config;
+		$lang_widgets = $q_config['enabled_languages'];
+	}
+
+	if(empty($lang_widgets)) {
+		register_sidebar( array(
+			'name' => __('Footer form', 'toolkit'),
+			'id' => 'toolkit_footer_form',
+			'before_widget' => '<div>',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widgettitle">',
+			'after_title' => '</h2>',
+		));
+	} else {
+		foreach($lang_widgets as $lang_widget) {
+
+			register_sidebar( array(
+				'name' => __('Footer form', 'toolkit') . ' (' . $lang_widget . ')',
+				'id' => 'toolkit_footer_form_' . $lang_widget,
+				'before_widget' => '<div>',
+				'after_widget' => '</div>',
+				'before_title' => '<h2 class="widgettitle">',
+				'after_title' => '</h2>',
+			));
+
+		}
+	}
 }
 add_action('widgets_init', 'toolkit_before_colophon_widget');
 
@@ -201,7 +224,12 @@ function toolkit_before_colophon() {
 		<div class="container">
 			<div class="twelve columns">
 				<div id="footer-form">
-					<?php dynamic_sidebar('toolkit_footer_form'); ?>
+					<?php 
+					if(function_exists('qtrans_getLanguage'))
+						dynamic_sidebar('toolkit_footer_form_' . qtrans_getLanguage());
+					else
+						dynamic_sidebar('toolkit_footer_form');
+					?>
 				</div>
 			</div>
 		</div>
