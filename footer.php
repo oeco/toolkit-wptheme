@@ -2,7 +2,16 @@
 
 <div id="colophon">
 	<div class="container">
-		<div class="twelve columns">
+		<div class="three columns">
+			<div class="license">
+				<?php if(function_exists('qtrans_getLanguage') && qtrans_getLanguage() == 'pt') : ?>
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR"><img alt="Licença Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />Este obra foi licenciado sob uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.pt_BR">Creative Commons Atribuição-NãoComercial 3.0 Não Adaptada</a>.
+				<?php else : ?>
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+				<?php endif; ?>
+			</div>
+		</div>
+		<div class="nine columns">
 			<div class="credits">
 				<span class="credits-title"><?php _e('A project by', 'toolkit'); ?></span>
 				<a class="c" href="http://oeco.com.br" title="O Eco"><img alt="O Eco" src="<?php echo get_template_directory_uri(); ?>/img/oeco.png" /></a>
