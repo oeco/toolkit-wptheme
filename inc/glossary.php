@@ -83,7 +83,7 @@ class Toolkit_Glossary {
 						'key' => 'field_51dbbd5a42203',
 						'label' => 'Meaning',
 						'name' => 'meaning',
-						'type' => $translate_fields['textarea'],
+						'type' => $translate_fields['wysiwyg'],
 						'required' => 1,
 					),
 				),
