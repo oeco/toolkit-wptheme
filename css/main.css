@@ -62,7 +62,7 @@ nav#category-nav ul li:hover a,nav#category-nav ul li.active a{color:#555;backgr
 .balloon-container:hover .balloon.balloon-bottom{left:50%;margin-left:-75px;top:10px;padding-top:10px;}
 .category-circles{padding:7px 0;display:block;}.category-circles .category{width:8px;height:8px;display:block;margin-right:10px;float:left;text-indent:-9999px;-webkit-border-radius:3px;-khtml-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;border-radius:3px;}
 .category-circles .balloon-container{float:left;display:block;margin:0 5px 0 0;}
-.summary-item{position:relative;}.summary-item:hover:before,.summary-item.active:before{position:absolute;left:-50px;top:1px;}
+.summary-item{position:relative;}.summary-item:hover:before,.summary-item.active:before{content:url(../img/icons/summary_small.png);position:absolute;left:-50px;top:1px;}
 h1.summary-item,h2.summary-item,h3.summary-item,h4.summary-item,h5.summary-item,h6.summary-item{position:relative;}h1.summary-item:hover:before,h2.summary-item:hover:before,h3.summary-item:hover:before,h4.summary-item:hover:before,h5.summary-item:hover:before,h6.summary-item:hover:before,h1.summary-item.active:before,h2.summary-item.active:before,h3.summary-item.active:before,h4.summary-item.active:before,h5.summary-item.active:before,h6.summary-item.active:before{content:url(../img/icons/summary_big.png);left:-50px;top:-2px;}
 h1.summary-item:before,h2.summary-item:before,h3.summary-item:before,h4.summary-item:before,h5.summary-item:before,h6.summary-item:before{content:url(../img/icons/summary_big.png);left:-50px;top:-2px;position:absolute;}
 .home-slider{padding:0;}
