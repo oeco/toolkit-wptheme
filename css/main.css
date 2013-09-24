@@ -1,3 +1,4 @@
+.button,input[type=submit],a.button,button{background:#025a44;color:#fff;text-shadow:0 0 0;line-height:40px;padding:0 15px;}.button:hover,input[type=submit]:hover,a.button:hover,button:hover{background:#333;color:#fff;}
 body{font-family:"Open Sans","Helvetica","Arial",sans-serif;}
 .alignleft{float:left;margin:0 20px 20px 0;}
 .alignright{float:right;margin:0 0 20px 20px;}
