@@ -77,4 +77,4 @@ h1.summary-item:before,h2.summary-item:before,h3.summary-item:before,h4.summary-
 .footer-form-container .gform_wrapper .gform_body{float:left;}
 #colophon{border-top:15px solid #025a44;padding:40px 0;}#colophon .license{float:left;font-size:12px;}
 #colophon .credits{float:right;}#colophon .credits .credits-title{float:left;line-height:50px;margin-right:20px;color:#999;}
-#colophon .credits .c{margin-right:20px;float:left;}
+#colophon .credits .c{margin-right:20px;float:left;}#colophon .credits .c img{height:35px;width:auto;}
