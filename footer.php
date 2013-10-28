@@ -18,7 +18,7 @@
 				<a class="c" href="http://icfj.org" title="International Center for Journalists"><img alt="International Center for Journalists" src="<?php echo get_template_directory_uri(); ?>/img/icfj.png" /></a>
 				<span class="credits-title"><?php _e('Supported by', 'toolkit'); ?></span>
 				<span class="c"><img alt="Youth in Action" src="<?php echo get_template_directory_uri(); ?>/img/youth-in-action-small.jpg" /></span>
-				<a class="c" href="http://ecolab.oeco.org.br/projects/flagit/" title="Flag It"><img alt="Flag It" src="<?php echo get_template_directory_uri(); ?>/img/flagit.png" /></a>
+				<a class="c eyp" href="http://www.youthpress.org/" title="European Youth Press"><img alt="European Youth Press" src="<?php echo get_template_directory_uri(); ?>/img/euro_youth_press.jpg" /></a>
 				<a class="c" href="http://earthjournalism.net" title="Earth Journalism Network"><img alt="Earth Journalism Network" src="<?php echo get_template_directory_uri(); ?>/img/ejn_logo.png" /></a>
 			</div>
 		</div>
