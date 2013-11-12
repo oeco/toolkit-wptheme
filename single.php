@@ -34,6 +34,19 @@
 					</div>
 					<div class="three columns">
 						<aside class="post-aside">
+							<div class="share">
+								<ul>
+									<li>
+										<div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="box_count" data-show-faces="false" data-send="false"></div>
+									</li>
+									<li>
+										<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink(); ?>" data-lang="en" data-count="vertical">Tweet</a>
+									</li>
+									<li>
+										<div class="g-plusone" data-size="tall" data-href="<?php the_permalink(); ?>"></div>
+									</li>
+								</ul>
+							</div>
 							<div class="aside-item row toolkit-summary">
 								<?php toolkit_summary(); ?>
 							</div>
