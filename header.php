@@ -51,7 +51,7 @@
                             <div class="fb-like" data-href="<?php echo home_url(); ?>" data-layout="button_count" data-show-faces="false" data-send="false"></div>
                         </li>
                         <li>
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo home_url(); ?>" data-lang="en">Tweet</a>
+                            <a href="https://twitter.com/geojournalism" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" data-lang="en">Follow us</a>
                         </li>
                     </ul>
                 </div>
