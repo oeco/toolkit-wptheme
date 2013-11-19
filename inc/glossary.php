@@ -14,6 +14,7 @@ class Toolkit_Glossary {
 		add_filter('post_link', array($this, 'post_link'));
 		add_action('template_redirect', array($this, 'template_redirect'));
 		add_shortcode('glossary', array($this, 'shortcode'));
+        add_action('pre_get_posts', array($this, 'pre_get_posts'));
 	}
 
 	function register_post_type() {
@@ -153,6 +154,15 @@ class Toolkit_Glossary {
 
 		return $content;
 	}
+
+    function pre_get_posts($query) {
+
+        if($query->get('post_type') == 'glossary' || (is_array($query->get('post_type')) && in_array('glossary', $query->get('post_type')))) {
+            $query->set('orderby', 'title');
+            $query->set('order', 'ASC');
+        }
+
+    }
 
 }
 
