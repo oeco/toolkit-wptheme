@@ -32,20 +32,32 @@
 	
 	<header id="masthead" class="row">
 		<div class="container">
-			<div class="five columns">
+			<div class="four columns">
 				<?php if(function_exists('qtrans_getLanguage') && qtrans_getLanguage() == 'pt') : ?>
 					<h1><a href="<?php echo home_url('/pt/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_pt.png" /></a></h1>
 				<?php else : ?>
 					<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>
 				<?php endif; ?>
 			</div>
-			<div class="five columns">
+			<div class="four columns">
 				<nav id="mastnav">
 					<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
 				</nav>
 			</div>
+            <div class="three columns">
+                <div class="share">
+                    <ul>
+                        <li>
+                            <div class="fb-like" data-href="<?php echo home_url(); ?>" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo home_url(); ?>" data-lang="en">Tweet</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 			<?php if(function_exists('qtrans_getLanguage')) : ?>
-				<div class="two columns">
+				<div class="one columns">
 					<nav id="lang">
 						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 					</nav>
