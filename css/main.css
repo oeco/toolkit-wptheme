@@ -129,6 +129,12 @@ header#masthead .share ul li {
 header#masthead .share ul li > * {
   margin-right: 10px;
 }
+header#masthead .share ul li.fb {
+  width: 90px;
+}
+header#masthead .share ul li.twitter {
+  width: 120px;
+}
 header#masthead #lang {
   opacity: .7;
   margin: -10px 0;

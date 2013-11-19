@@ -47,10 +47,10 @@
             <div class="three columns">
                 <div class="share">
                     <ul>
-                        <li>
+                        <li class="fb">
                             <div class="fb-like" data-href="<?php echo home_url(); ?>" data-layout="button_count" data-show-faces="false" data-send="false"></div>
                         </li>
-                        <li>
+                        <li class="twitter">
                             <a href="https://twitter.com/geojournalism" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" data-lang="en">Follow us</a>
                         </li>
                     </ul>
