@@ -119,7 +119,11 @@ class Toolkit_Glossary {
 
 	function get_permalink() {
 		global $post;
-		return get_post_type_archive_link('glossary') . '#' . sanitize_title(get_the_title());
+		$url = get_post_type_archive_link('glossary') . '#' . sanitize_title(get_the_title());
+        if(function_exists('qtrans_convertURL')) {
+            $url = qtrans_convertURL($url);
+        }
+        return $url;
 	}
 
 	function post_link($permalink) {
