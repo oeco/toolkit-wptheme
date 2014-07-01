@@ -48,7 +48,7 @@
                 <div class="share">
                     <ul>
                         <li class="fb">
-                            <div class="fb-like" data-href="<?php echo home_url(); ?>" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                            <div class="fb-like" data-href="https://www.facebook.com/pages/Geojournalism/321645684659638" data-layout="button_count" data-show-faces="false" data-send="false"></div>
                         </li>
                         <li class="twitter">
                             <a href="https://twitter.com/geojournalism" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" data-lang="en">Follow us</a>
