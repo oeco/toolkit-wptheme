@@ -23,13 +23,13 @@ function toolkit_setup() {
 	add_image_size('tool-thumbnail', 260, 260, true);
 
 	register_nav_menus(array(
-		'header_menu' => __('Header menu', 'mappress'),
-		'footer_menu' => __('Footer menu', 'mappress')
+		'header_menu' => __('Header menu', 'toolkit'),
+		'footer_menu' => __('Footer menu', 'toolkit')
 	));
 
 	//sidebars
 	register_sidebar(array(
-		'name' => __('General sidebar', 'mappress'),
+		'name' => __('General sidebar', 'toolkit'),
 		'id' => 'general',
 		'before_title' => '<h2 class="widget-title">',
 		'after_title' => '</h2>'

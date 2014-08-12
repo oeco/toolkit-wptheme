@@ -91,8 +91,14 @@ button {
 
 @boxbg: #eef0e3;
 
+@purple: #BB3CC7;
+
 body {
 	font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+}
+
+.anti-row {
+	margin-top: -40px;
 }
 
 .alignleft {
@@ -144,6 +150,7 @@ h4,
 h5,
 h6 {
 	font-family: "Lato", "Open Sans", "Helvetica", "Arial", sans-serif;
+	line-height: 140%;
 }
 
 a,
@@ -161,11 +168,15 @@ header#masthead {
 	h1 {
 		margin: 0;
 		padding: 0;
-		font-size: 0;
-		line-height: 0;
-		text-align: -9999px;
-		img {
-			display: block;
+		font-size: 26px;
+		line-height: 60px;
+		color: #444;
+		a {
+			color: inherit;
+			text-decoration: none;
+			&:hover {
+				color: @purple;
+			}
 		}
 	}
 	#mastnav {
@@ -243,6 +254,159 @@ header#masthead {
 	}
 }
 
+#site-description {
+	padding: 60px 0;
+	background: @purple;
+	border-top: 10px solid lighten(@purple, 5%);
+	border-bottom: 10px solid darken(@purple, 10%);
+	color: rgba(255,255,255,0.7);
+	a {
+		color: #fff;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	::-webkit-input-placeholder {
+		color: #fff;
+		font-family: "Lato";
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	:-moz-placeholder {
+		color: #fff;
+		font-family: "Lato";
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	::-moz-placeholder {
+		color: #fff;
+		font-family: "Lato";
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	:-ms-input-placeholder {  
+		color: #fff;
+		font-family: "Lato";
+		font-size: 16px;
+		font-weight: 200;
+	}
+	p.main-text {
+		color: rgba(255,255,255,0.7);
+		font-size: 30px;
+		line-height: 150%;
+		font-family: "Lato";
+		font-weight: 200;
+		margin: 0 0 40px;
+	}
+	input[type=text] {
+		border: 0;
+		background: rgba(255,255,255,0.1);
+		border: 1px dashed rgba(255,255,255,0.2);
+		color: #fff;
+		padding: 20px;
+		font-family: "Lato";
+		font-size: 16px;
+		display: block;
+		margin: 0;
+		width: 100%;
+	}
+}
+
+.eyecandy {
+	background: #333;
+	color: #f0f0f0;
+	padding: 40px 0;
+	margin: -40px 0 40px;
+	h2 {
+		font-weight: 200;
+		font-size: 52px;
+		line-height: 80px;
+		color: #f0f0f0;
+	}
+}
+
+.home-slider {
+	width: 50%;
+	padding: 0;
+	float: left;
+}
+
+#editors-pick {
+	width: 50%;
+	float: left;
+	margin: -40px 0 0;
+	.box-sizing(border-box);
+	padding: 40px;
+	h3 {
+		color: lighten(@purple, 10%);
+		font-size: 12px;
+		text-transform: uppercase;
+		margin: 0;
+	}
+	h2 {
+		font-weight: 200;
+		border-bottom: 2px solid lighten(@purple, 40%);
+		padding: 0 0 20px;
+		margin: 0 0 20px;
+	}
+	.pick-list {
+		li {
+			padding: 0;
+			margin: 0 0 10px;
+			padding: 0 0 10px;
+			border-bottom: 1px solid lighten(@purple, 40%);
+			h3 {
+				font-size: 18px;
+				text-transform: none;
+				color: #222;
+				font-weight: 600;
+				margin: 0 0 10px;
+			}
+			p {
+				font-size: 12px;
+				margin: 0;
+			}
+		}
+	}
+	.button {
+		background: @purple;
+		display: block;
+		width: 100%;
+		text-align: center;
+		text-transform: uppercase;
+		padding: 0;
+	}
+}
+
+#tracks {
+	background: #8BC470;
+	padding: 60px 0;
+	color: rgba(255,255,255,0.7);
+	a {
+		color: #fff;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	h2 {
+		color: #fff;
+		font-weight: 200;
+		padding-bottom: 10px;
+		border-bottom: 1px dashed darken(#8BC470, 10%);
+	}
+	p.tracks-description {
+		font-family: "Lato";
+		font-size: 20px;
+		line-height: 150%;
+		font-weight: 200;
+	}
+}
+
 nav#category-nav {
 	width: 100%;
 	padding: 30px 0;
@@ -276,19 +440,6 @@ nav#category-nav {
 				}
 			}
 		}
-	}
-}
-
-.eyecandy {
-	background: #333;
-	color: #f0f0f0;
-	padding: 40px 0;
-	margin: -40px 0 40px;
-	h2 {
-		font-weight: 200;
-		font-size: 52px;
-		line-height: 80px;
-		color: #f0f0f0;
 	}
 }
 
@@ -746,15 +897,11 @@ h6 {
 	}
 }
 
-.home-slider {
-	padding: 0;
-}
-
 .featured-slider {
 	width: 100%;
 	position: relative;
 	overflow: hidden;
-	height: 400px;
+	height: 440px;
 	.container .columns {
 		position: relative;
 	}

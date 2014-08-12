@@ -33,11 +33,7 @@
 	<header id="masthead" class="row">
 		<div class="container">
 			<div class="four columns">
-				<?php if(function_exists('qtrans_getLanguage') && qtrans_getLanguage() == 'pt') : ?>
-					<h1><a href="<?php echo home_url('/pt/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_pt.png" /></a></h1>
-				<?php else : ?>
-					<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?><img src="<?php echo get_template_directory_uri(); ?>/img/logo_en.png" /></a></h1>
-				<?php endif; ?>
+				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a></h1>
 			</div>
 			<div class="four columns">
 				<nav id="mastnav">
