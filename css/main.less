@@ -74,21 +74,6 @@
 	}
 }
 
-.button,
-input[type=submit],
-a.button,
-button {
-	background: #025a44;
-	color: #fff;
-	text-shadow: 0 0 0;
-	line-height: 40px;
-	padding: 0 15px;
-	&:hover {
-		background: #333;
-		color: #fff;
-	}
-}
-
 @boxbg: #eef0e3;
 
 @purple: #BB3CC7;
@@ -159,7 +144,19 @@ a:visited {
 	color: #ce901f;
 }
 
-.glossary-link {
+.button,
+input[type=submit],
+a.button,
+button {
+	background: #025a44;
+	color: #fff;
+	text-shadow: 0 0 0;
+	line-height: 40px;
+	padding: 0 15px;
+	&:hover {
+		background: #333;
+		color: #fff;
+	}
 }
 
 header#masthead {
@@ -257,7 +254,6 @@ header#masthead {
 #site-description {
 	padding: 60px 0;
 	background: @purple;
-	border-top: 10px solid lighten(@purple, 5%);
 	border-bottom: 10px solid darken(@purple, 10%);
 	color: rgba(255,255,255,0.7);
 	a {
@@ -341,6 +337,7 @@ header#masthead {
 	margin: -40px 0 0;
 	.box-sizing(border-box);
 	padding: 40px;
+	max-width: 600px;
 	h3 {
 		color: lighten(@purple, 10%);
 		font-size: 12px;
@@ -382,10 +379,24 @@ header#masthead {
 	}
 }
 
+@tracks: #5F83B3;
+
 #tracks {
-	background: #8BC470;
+	background: @tracks;
 	padding: 60px 0;
 	color: rgba(255,255,255,0.7);
+	border-bottom: 10px solid darken(@tracks, 10%);
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: rgba(0,0,0,0.1);
+		border-left: 5px solid @tracks;
+	}
+	strong {
+		color: inherit;
+	}
 	a {
 		color: #fff;
 		text-decoration: none;
@@ -393,17 +404,101 @@ header#masthead {
 			text-decoration: underline;
 		}
 	}
-	h2 {
+	h2.htitle,
+	h3.htitle {
 		color: #fff;
 		font-weight: 200;
-		padding-bottom: 10px;
-		border-bottom: 1px dashed darken(#8BC470, 10%);
+		border-bottom: 1px dashed darken(@tracks, 10%);
+		line-height: 80px;
+		margin: 0 0 20px;
+	}
+	.no-title {
+		width: 100%;
+		height: 101px;
+	}
+	h2.htitle {
+		font-size: 40px;
+	}
+	h3.htitle {
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
 	}
 	p.tracks-description {
 		font-family: "Lato";
 		font-size: 20px;
 		line-height: 150%;
 		font-weight: 200;
+	}
+	.track-list {
+		height: 250px;
+		overflow: auto;
+		li {
+			background: rgba(0,0,0,0.1);
+			padding: 20px;
+			margin: 0 0 1px;
+			cursor: pointer;
+			&:hover {
+				background: rgba(255,255,255,0.2);
+			}
+			&.active {
+				background: rgba(255,255,255,0.9);
+				h3, p {
+					color: #555;
+				}
+			}
+			h3 {
+				font-size: 14px;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: #fff;
+				margin: 0 0 5px;
+			}
+			p {
+				font-size: 12px;
+				margin: 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+	}
+	.single-track {
+		background: #fff;
+		padding: 40px;
+		margin: -60px 0 0 20px;
+		position: relative;
+		color: #333;
+		p {
+			color: #333;
+		}
+		&:before {
+			content: '';
+			width: 20px;
+			height: 20px;
+			.transform(rotate(45deg));
+			background: #fff;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			margin-left: -10px;
+			margin-top: -10px;
+		}
+		h2 {
+			color: #444;
+			font-weight: 200;
+			margin: 0 0 20px;
+		}
+		.track-description {
+			margin: 0 0 20px;
+			padding: 20px 0;
+			border-top: 1px dashed rgba(0,0,0,0.2);
+			border-bottom: 1px dashed rgba(0,0,0,0.2);
+		}
+		.track-tutorials {
+			color: #333;
+			font-size: 16px;
+		}
 	}
 }
 
