@@ -4,6 +4,7 @@
  * Toolkit functionalities
  */
 
+require_once(TEMPLATEPATH . '/inc/tracks.php'); // Tutorials
 require_once(TEMPLATEPATH . '/inc/tutorials.php'); // Tutorials
 require_once(TEMPLATEPATH . '/inc/tools.php'); // Tools
 require_once(TEMPLATEPATH . '/inc/glossary.php'); // Glossary
@@ -43,6 +44,8 @@ add_action('after_setup_theme', 'toolkit_setup');
  */
 
 function toolkit_styles() {
+
+	wp_enqueue_script('jquery');
 
 	wp_register_style('base', get_template_directory_uri() . '/css/base.css');
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
