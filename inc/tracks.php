@@ -85,8 +85,8 @@ class Toolkit_Tracks {
 	function register_fields() {
 		if(function_exists("register_field_group")) {
 			register_field_group(array (
-				'id' => 'acf_tutorial-tracks',
-				'title' => __('Tutorial tracks', 'toolkit'),
+				'id' => 'acf_related-tracks',
+				'title' => __('Related tracks', 'toolkit'),
 				'fields' => array (
 					array (
 						'post_type' => array (
@@ -97,9 +97,9 @@ class Toolkit_Tracks {
 						),
 						'multiple' => 1,
 						'allow_null' => 0,
-						'key' => 'field_tutorial_tracks',
-						'label' => __('Tutorial tracks', 'toolkit'),
-						'name' => 'tutorial_tracks',
+						'key' => 'field_related_tracks',
+						'label' => __('Related tracks', 'toolkit'),
+						'name' => 'related_tracks',
 						'type' => 'post_object',
 						'required' => 1,
 					),
@@ -110,6 +110,13 @@ class Toolkit_Tracks {
 							'param' => 'post_type',
 							'operator' => '==',
 							'value' => 'post',
+							'order_no' => 0,
+							'group_no' => 0,
+						),
+						array (
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'pick',
 							'order_no' => 0,
 							'group_no' => 0,
 						),
@@ -126,7 +133,7 @@ class Toolkit_Tracks {
 		}
 	}
 
-	function get_track_tutorials_count($track_id) {
+	function get_track_tutorials_count($track_id = false) {
 
 		global $post;
 		$track_id = $track_id ? $track_id : $post->ID;
@@ -150,6 +157,6 @@ class Toolkit_Tracks {
 
 $GLOBALS['toolkit_tracks'] = new Toolkit_Tracks();
 
-function toolkit_get_track_tutorials_count($track_id) {
+function toolkit_get_track_tutorials_count($track_id = false) {
 	return $GLOBALS['toolkit_tracks']->get_track_tutorials_count($track_id);
 }

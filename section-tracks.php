@@ -1,7 +1,13 @@
 <?php
 $tracks_query = new WP_Query(array(
 	'post_type' => 'track',
-	'posts_per_page' => 10
+	'posts_per_page' => 10,
+	'meta_query' => array(
+		array(
+			'key' => 'featured',
+			'value' => 1
+		)
+	)
 ));
 if($tracks_query->have_posts()) :
 	?>
@@ -39,7 +45,7 @@ if($tracks_query->have_posts()) :
 						<div id="track-details-<?php the_ID(); ?>" class="track-details">
 							<div class="no-title"></div>
 							<div class="single-track">
-								<h2><?php the_title(); ?></h2>
+								<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 								<p class="track-description"><?php echo get_the_excerpt(); ?> <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php _e('Continue reading', 'toolkit'); ?></a></p>
 								<p class="track-tutorials"><?php printf(__('This track has <strong>%s</strong> tutorials', 'toolkit'), toolkit_get_track_tutorials_count()); ?></p>
 							</div>
