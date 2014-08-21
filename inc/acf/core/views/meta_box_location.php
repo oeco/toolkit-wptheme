@@ -1,11 +1,14 @@
 <?php
 
 /*
-*  Meta Box: Location
+*  Meta box - locations
 *
-*  @description: 
-*  @created: 23/06/12
+*  This template file is used when editing a field group and creates the interface for editing location rules.
+*
+*  @type	template
+*  @date	23/06/12
 */
+
 
 // global
 global $post;
@@ -72,22 +75,23 @@ if( empty($groups) )
 								'post_type'		=>	__("Post Type",'acf'),
 								'user_type'		=>	__("Logged in User Type",'acf'),
 							),
+							__("Post",'acf') => array(
+								'post'			=>	__("Post",'acf'),
+								'post_category'	=>	__("Post Category",'acf'),
+								'post_format'	=>	__("Post Format",'acf'),
+								'post_status'	=>	__("Post Status",'acf'),
+								'taxonomy'		=>	__("Post Taxonomy",'acf'),
+							),
 							__("Page",'acf') => array(
 								'page'			=>	__("Page",'acf'),
 								'page_type'		=>	__("Page Type",'acf'),
 								'page_parent'	=>	__("Page Parent",'acf'),
 								'page_template'	=>	__("Page Template",'acf'),
 							),
-							__("Post",'acf') => array(
-								'post'			=>	__("Post",'acf'),
-								'post_category'	=>	__("Post Category",'acf'),
-								'post_format'	=>	__("Post Format",'acf'),
-								'taxonomy'		=>	__("Post Taxonomy",'acf'),
-							),
 							__("Other",'acf') => array(
-								'ef_taxonomy'	=>	__("Taxonomy Term (Add / Edit)",'acf'),
-								'ef_user'		=>	__("User (Add / Edit)",'acf'),
-								'ef_media'		=>	__("Media Attachment (Edit)",'acf')
+								'ef_media'		=>	__("Attachment",'acf'),
+								'ef_taxonomy'	=>	__("Taxonomy Term",'acf'),
+								'ef_user'		=>	__("User",'acf'),
 							)
 						);
 								
@@ -163,11 +167,3 @@ if( empty($groups) )
 	</tr>
 	</tbody>
 </table>
-<script type="text/html" id="acf_location_options_deactivated">
-	<optgroup label="<?php _e("Options",'acf'); ?>" disabled="true">
-		<option value="" disabled="true"><?php _e("Unlock options add-on with an activation code",'acf'); ?></option>
-	</optgroup>
-</script>
-<script type="text/javascript">
-acf.text.or = "<?php _e('or','acf'); ?>";
-</script>

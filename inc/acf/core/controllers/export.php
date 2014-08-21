@@ -349,46 +349,6 @@ define( 'ACF_LITE', true );
 		if( $acfs )
 		{
 			?>
-<?php _e("/**
- *  Install Add-ons
- *  
- *  The following code will include all 4 premium Add-Ons in your theme.
- *  Please do not attempt to include a file which does not exist. This will produce an error.
- *  
- *  All fields must be included during the 'acf/register_fields' action.
- *  Other types of Add-ons (like the options page) can be included outside of this action.
- *  
- *  The following code assumes you have a folder 'add-ons' inside your theme.
- *
- *  IMPORTANT
- *  Add-ons may be included in a premium theme as outlined in the terms and conditions.
- *  However, they are NOT to be included in a premium / free plugin.
- *  For more information, please read http://www.advancedcustomfields.com/terms-conditions/
- */",'acf'); ?>
- 
-
-// <?php _e("Fields",'acf'); ?> 
-add_action('acf/register_fields', 'my_register_fields');
-
-function my_register_fields()
-{
-	//include_once('add-ons/acf-repeater/repeater.php');
-	//include_once('add-ons/acf-gallery/gallery.php');
-	//include_once('add-ons/acf-flexible-content/flexible-content.php');
-}
-
-// <?php _e("Options Page",'acf'); ?> 
-//include_once( 'add-ons/acf-options-page/acf-options-page.php' );
-
-
-<?php _e("/**
- *  Register Field Groups
- *
- *  The register_field_group function accepts 1 array which holds the relevant data to register a field group
- *  You may edit the array as you see fit. However, this may result in errors if the array is not compatible with ACF
- */",'acf'); ?>
-
-
 if(function_exists("register_field_group"))
 {
 <?php
@@ -423,6 +383,11 @@ if(function_exists("register_field_group"))
 				// add extra tab at start of each line
 				$html = str_replace("\n", "\n\t", $html);
 				
+				// add the WP __() function to specific strings for translation in theme
+				//$html = preg_replace("/'label'(.*?)('.*?')/", "'label'$1__($2)", $html);
+				//$html = preg_replace("/'instructions'(.*?)('.*?')/", "'instructions'$1__($2)", $html);
+				
+								
 ?>	register_field_group(<?php echo $html ?>);
 <?php
 			}
@@ -444,7 +409,7 @@ if(function_exists("register_field_group"))
 	
 	var i = 0;
 	
-	$('textarea.pre').live( 'mousedown', function (){
+	$(document).on('click', 'textarea.pre', function(){
 		
 		if( i == 0 )
 		{
@@ -457,13 +422,13 @@ if(function_exists("register_field_group"))
 				
 	});
 	
+	$(document).on('keyup', 'textarea.pre', function(){
 	
-	$('textarea.pre').live( 'keyup', function (){
 	    $(this).height( 0 );
 	    $(this).height( this.scrollHeight );
+	
 	});
 
-	
 	$(document).ready(function(){
 		
 		$('textarea.pre').trigger('keyup');
@@ -492,7 +457,7 @@ if(function_exists("register_field_group"))
 			foreach( $fields as $i => $field )
 			{
 				// unset unneccessary bits
-				unset( $field['id'], $field['class'], $field['order_no'] );
+				unset( $field['id'], $field['class'], $field['order_no'], $field['field_group'], $field['_name'] );
 				
 				
 				// instructions

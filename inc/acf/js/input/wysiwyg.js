@@ -1,204 +1,336 @@
-/*
-*  WYSIWYG
-*
-*  @description: 
-*  @since: 3.5.8
-*  @created: 17/01/13
-*/
-
 (function($){
 	
-	var _wysiwyg = acf.fields.wysiwyg;
-	
-	
 	/*
-	*  has_tinymce
+	*  WYSIWYG
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  jQuery functionality for this field type
+	*
+	*  @type	object
+	*  @date	20/07/13
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	_wysiwyg.has_tinymce = function(){
+	var _wysiwyg = acf.fields.wysiwyg = {
 		
-		var r = false;
+		$el : null,
+		$textarea : null,
 		
-		if( typeof(tinyMCE) == "object" )
-		{
-			r = true;
-		}
+		o : {},
 		
-		return r;
-		
-	};
-	
-	
-	/*
-	*  add_tinymce
-	*
-	*  {description}
-	*  
-	*  @since: 4.0.4
-	*  @created: 11/04/13
-	*/
-	
-	_wysiwyg.add_tinymce = function( $el ){
-		
-		
-		// validate tinymce
-		if( ! _wysiwyg.has_tinymce() )
-		{
-			return;
-		}
-		
-		
-		// activate
-		$el.find('.acf_wysiwyg textarea').each(function(){
+		set : function( o ){
+			
+			// merge in new option
+			$.extend( this, o );
 			
 			
-			// vars
-			var textarea = $(this),
-				id = textarea.attr('id'),
-				toolbar = textarea.closest('.acf_wysiwyg').attr('data-toolbar');
+			// find textarea
+			this.$textarea = this.$el.find('textarea');
 			
+			
+			// get options
+			this.o = acf.helpers.get_atts( this.$el );
+			
+			
+			// add ID
+			this.o.id = this.$textarea.attr('id');
+			
+			
+			// return this for chaining
+			return this;
+			
+		},
+		has_tinymce : function(){
+		
+			var r = false;
+			
+			if( typeof(tinyMCE) == "object" )
+			{
+				r = true;
+			}
+			
+			return r;
+			
+		},
+		
+		get_toolbar : function(){
+			
+			// safely get toolbar
+			if( acf.helpers.isset( this, 'toolbars', this.o.toolbar ) ) {
+				
+				return this.toolbars[ this.o.toolbar ];
+				
+			}
+			
+			
+			// return
+			return false;
+			
+		},
+		
+		init : function(){
 			
 			// is clone field?
-			if( acf.helpers.is_clone_field(textarea) )
+			if( acf.helpers.is_clone_field( this.$textarea ) )
 			{
 				return;
 			}
 			
 			
-			// reset tinyMCE settings
-			tinyMCE.settings.theme_advanced_buttons1 = '';
-			tinyMCE.settings.theme_advanced_buttons2 = '';
-			tinyMCE.settings.theme_advanced_buttons3 = '';
-			tinyMCE.settings.theme_advanced_buttons4 = '';
+			// vars
+			var toolbar = this.get_toolbar(),
+				command = 'mceAddControl',
+				setting = 'theme_advanced_buttons{i}';
 			
-			if( _wysiwyg.toolbars[ toolbar ] )
-			{
-				$.each( _wysiwyg.toolbars[ toolbar ], function( k, v ){
-					tinyMCE.settings[ k ] = v;
-				})
+			
+			// backup
+			var _settings = $.extend( {}, tinyMCE.settings );
+			
+			
+			// v4 settings
+			if( tinymce.majorVersion == 4 ) {
+				
+				command = 'mceAddEditor';
+				setting = 'toolbar{i}';
+				
 			}
 			
 			
-			// add functionality back in
-			tinyMCE.execCommand("mceAddControl", false, id);
+			// add toolbars
+			if( toolbar ) {
+					
+				for( var i = 1; i < 5; i++ ) {
+					
+					// vars
+					var v = '';
+					
+					
+					// load toolbar
+					if( acf.helpers.isset( toolbar, 'theme_advanced_buttons' + i ) ) {
+						
+						v = toolbar['theme_advanced_buttons' + i];
+						
+					}
+					
+					
+					// update setting
+					tinyMCE.settings[ setting.replace('{i}', i) ] = v;
+					
+				}
+				
+			}
+			
+			
+			// add editor
+			tinyMCE.execCommand( command, false, this.o.id);
 			
 			
 			// events - load
-			$(document).trigger('acf/wysiwyg/load', id);
+			$(document).trigger('acf/wysiwyg/load', this.o.id);
 			
 			
 			// add events (click, focus, blur) for inserting image into correct editor
-			_wysiwyg.add_events( id );
+			this.add_events();
+				
 			
-		});
-		
-		
-		wpActiveEditor = null;
-		
-		
-	};
-	
-	
-	/*
-	*  add_wysiwyg_events
-	*
-	*  @description: 
-	*  @since: 2.0.4
-	*  @created: 16/12/12
-	*/
-	
-	_wysiwyg.add_events = function( id ){
-		
-		// validate tinymce
-		if( ! _wysiwyg.has_tinymce() )
-		{
-			return;
-		}
-		
-		
-		var editor = tinyMCE.get( id );
-		
-		if( !editor )
-		{
-			return;
-		}
-		
-		
-		var	container = $('#wp-' + id + '-wrap'),
-			body = $( editor.getBody() );
-
-
-		container.click(function(){
-			$(document).trigger('acf/wysiwyg/click', id);
-		});
-		
-		body.focus(function(){
-			$(document).trigger('acf/wysiwyg/focus', id);
-		}).blur(function(){
-			$(document).trigger('acf/wysiwyg/blur', id);
-		});
-		
-		
-	};
-	
-	
-	/*
-	*  remove_tinymce
-	*
-	*  {description}
-	*  
-	*  @since: 4.0.4
-	*  @created: 11/04/13
-	*/
-	
-	_wysiwyg.remove_tinymce = function( $el ){
-		
-		// validate tinymce
-		if( ! _wysiwyg.has_tinymce() )
-		{
-			return;
-		}
-		
-		
-		$el.find('.acf_wysiwyg textarea').each(function(){
+			// restore tinyMCE.settings
+			tinyMCE.settings = _settings;
 			
+			
+			// set active editor to null
+			wpActiveEditor = null;
+					
+		},
+		add_events : function(){
+		
 			// vars
-			var textarea = $(this),
-				id = textarea.attr('id'),
+			var id = this.o.id,
 				editor = tinyMCE.get( id );
 			
 			
-			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
-			if( editor )
+			// validate
+			if( !editor )
 			{
+				return;
+			}
+			
+			
+			// vars
+			var	$container = $('#wp-' + id + '-wrap'),
+				$body = $( editor.getBody() );
+	
+			
+			// events
+			$container.on('click', function(){
+			
+				$(document).trigger('acf/wysiwyg/click', id);
+				
+			});
+			
+			$body.on('focus', function(){
+			
+				$(document).trigger('acf/wysiwyg/focus', id);
+				
+			});
+			
+			$body.on('blur', function(){
+			
+				$(document).trigger('acf/wysiwyg/blur', id);
+				
+			});
+			
+			
+		},
+		destroy : function(){
+			
+			// vars
+			var id = this.o.id,
+				command = 'mceRemoveControl';
+			
+			
+			// Remove tinymcy functionality.
+			// Due to the media popup destroying and creating the field within such a short amount of time,
+			// a JS error will be thrown when launching the edit window twice in a row.
+			try {
+				
+				// vars
+				var editor = tinyMCE.get( id );
+				
+				
+				// validate
+				if( !editor ) {
+					
+					return;
+					
+				}
+				
+				
+				// v4 settings
+				if( tinymce.majorVersion == 4 ) {
+					
+					command = 'mceRemoveEditor';
+					
+				}
+				
+				
+				// store value
 				var val = editor.getContent();
 				
-				tinyMCE.execCommand("mceRemoveControl", false, id);
-			
-				textarea.val( val );
+				
+				// remove editor
+				tinyMCE.execCommand(command, false, id);
+				
+				
+				// set value
+				this.$textarea.val( val );
+				
+				
+			} catch(e) {
+				
+				//console.log( e );
+				
 			}
+			
+			
+			// set active editor to null
+			wpActiveEditor = null;
+			
+		}
+		
+	};
+	
+	
+	/*
+	*  acf/setup_fields
+	*
+	*  run init function on all elements for this field
+	*
+	*  @type	event
+	*  @date	20/07/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	el		DOM object which may contain new ACF elements
+	*  @return	N/A
+	*/
+	
+	$(document).on('acf/setup_fields', function(e, el){
+		
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
+		
+		// Destory all WYSIWYG fields
+		// This hack will fix a problem when the WP popup is created and hidden, then the ACF popup (image/file field) is opened
+		$(el).find('.acf_wysiwyg').each(function(){
+			
+			_wysiwyg.set({ $el : $(this) }).destroy();
 			
 		});
 		
 		
-		wpActiveEditor = null;
-
-	};
+		// Add WYSIWYG fields
+		setTimeout(function(){
+			
+			$(el).find('.acf_wysiwyg').each(function(){
+			
+				_wysiwyg.set({ $el : $(this) }).init();
+				
+			});
+			
+		}, 0);
+		
+	});
 	
+	
+	/*
+	*  acf/remove_fields
+	*
+	*  This action is called when the $el is being removed from the DOM
+	*
+	*  @type	event
+	*  @date	20/07/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	$el		jQuery element being removed
+	*  @return	N/A
+	*/
+	
+	$(document).on('acf/remove_fields', function(e, $el){
+		
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
+		
+		$el.find('.acf_wysiwyg').each(function(){
+			
+			_wysiwyg.set({ $el : $(this) }).destroy();
+			
+		});
+		
+	});
+		
 	
 	/*
 	*  acf/wysiwyg/click
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  this event is run when a user clicks on a WYSIWYG field
+	*
+	*  @type	event
+	*  @date	17/01/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{int}		id		WYSIWYG ID
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/wysiwyg/click', function(e, id){
+	$(document).on('acf/wysiwyg/click', function(e, id){
 		
 		wpActiveEditor = id;
 		
@@ -210,12 +342,17 @@
 	/*
 	*  acf/wysiwyg/focus
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  this event is run when a user focuses on a WYSIWYG field body
+	*
+	*  @type	event
+	*  @date	17/01/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{int}		id		WYSIWYG ID
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/wysiwyg/focus', function(e, id){
+	$(document).on('acf/wysiwyg/focus', function(e, id){
 		
 		wpActiveEditor = id;
 		
@@ -223,22 +360,37 @@
 		
 	});
 	
+	
 	/*
 	*  acf/wysiwyg/blur
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  this event is run when a user loses focus on a WYSIWYG field body
+	*
+	*  @type	event
+	*  @date	17/01/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{int}		id		WYSIWYG ID
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/wysiwyg/blur', function(e, id){
+	$(document).on('acf/wysiwyg/blur', function(e, id){
 		
 		wpActiveEditor = null;
 		
 		// update the hidden textarea
 		// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden tetarea is never populated!
-		var editor = tinyMCE.get( id ),
-			el = editor.getElement();
+		var editor = tinyMCE.get( id );
+		
+		
+		// validate
+		if( !editor )
+		{
+			return;
+		}
+		
+		
+		var el = editor.getElement();
 		
 			
 		// save to textarea	
@@ -249,34 +401,35 @@
 		$( el ).trigger('change');
 		
 	});
-	
-	
-	/*
-	*  acf/setup_fields
-	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	$(document).live('acf/setup_fields', function(e, div){
-		
-		_wysiwyg.add_tinymce( $(div) );
-
-	});
 
 	
 	/*
 	*  acf/sortable_start
 	*
-	*  @description:
-	*  @since 3.5.1
-	*  @created: 10/11/12
+	*  this event is run when a element is being drag / dropped
+	*
+	*  @type	event
+	*  @date	10/11/12
+	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	el		DOM object which may contain new ACF elements
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/sortable_start', function(e, div) {
+	$(document).on('acf/sortable_start', function(e, el) {
 		
-		_wysiwyg.remove_tinymce( $(div) );
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
+		
+		$(el).find('.acf_wysiwyg').each(function(){
+			
+			_wysiwyg.set({ $el : $(this) }).destroy();
+			
+		});
 		
 	});
 	
@@ -284,14 +437,30 @@
 	/*
 	*  acf/sortable_stop
 	*
-	*  @description:
-	*  @since 3.5.1
-	*  @created: 10/11/12
+	*  this event is run when a element has finnished being drag / dropped
+	*
+	*  @type	event
+	*  @date	10/11/12
+	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	el		DOM object which may contain new ACF elements
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/sortable_stop', function(e, div) {
+	$(document).on('acf/sortable_stop', function(e, el) {
 		
-		_wysiwyg.add_tinymce( $(div) );
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
+		
+		$(el).find('.acf_wysiwyg').each(function(){
+			
+			_wysiwyg.set({ $el : $(this) }).init();
+			
+		});
 		
 	});
 	
@@ -305,6 +474,13 @@
 	*/
 	
 	$(window).load(function(){
+		
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
 		
 		// vars
 		var wp_content = $('#wp-content-wrap').exists(),
@@ -345,11 +521,12 @@
 			// Add events to content editor
 			if( wp_content )
 			{
-				_wysiwyg.add_events( 'content' );
+				_wysiwyg.set({ $el : $('#wp-content-wrap') }).add_events();
 			}
 			
 			
 		}, 11);
+		
 		
 	});
 	
@@ -362,7 +539,7 @@
 	*  @created: 26/02/13
 	*/
 	
-	$('.acf_wysiwyg a.mce_fullscreen').live('click', function(){
+	$(document).on('click', '.acf_wysiwyg a.mce_fullscreen', function(){
 		
 		// vars
 		var wysiwyg = $(this).closest('.acf_wysiwyg'),
@@ -370,10 +547,10 @@
 		
 		if( upload == 'no' )
 		{
-			$('#mce_fullscreen_container td.mceToolbar .mce_add_media').hide();
+			$('#mce_fullscreen_container td.mceToolbar .mce_add_media').remove();
 		}
 		
 	});
 	
-
+	
 })(jQuery);

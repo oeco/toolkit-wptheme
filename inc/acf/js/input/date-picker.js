@@ -78,11 +78,6 @@
 			}
 			
 		},
-		focus : function(){
-
-			
-			
-		},
 		blur : function(){
 			
 			if( !this.$input.val() )
@@ -98,16 +93,19 @@
 	/*
 	*  acf/setup_fields
 	*
-	*  run init function for this field
+	*  run init function on all elements for this field
 	*
 	*  @type	event
-	*  @date	1/06/13
+	*  @date	20/07/13
 	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	el		DOM object which may contain new ACF elements
+	*  @return	N/A
 	*/
+	
+	$(document).on('acf/setup_fields', function(e, el){
 		
-	$(document).live('acf/setup_fields', function(e, postbox){
-		
-		$(postbox).find('.acf-date_picker').each(function(){
+		$(el).find('.acf-date_picker').each(function(){
 			
 			acf.fields.date_picker.set({ $el : $(this) }).init();
 			
@@ -119,14 +117,14 @@
 	/*
 	*  Events
 	*
-	*  live events for this field
+	*  jQuery events for this field
 	*
 	*  @type	event
 	*  @date	1/06/13
 	*
 	*/
 	
-	$('.acf-date_picker input[type="text"]').live('blur', function(){
+	$(document).on('blur', '.acf-date_picker input[type="text"]', function( e ){
 		
 		acf.fields.date_picker.set({ $el : $(this).parent() }).blur();
 					

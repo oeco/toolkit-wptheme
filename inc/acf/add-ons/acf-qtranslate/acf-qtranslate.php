@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: qTranslate
 Plugin URI: http://github.com/funkjedi/acf-qtranslate
 Description: Provides multilingual versions of the text, text area, and wysiwyg fields.
-Version: 1.0.0
+Version: 1.2.0
 Author: funkjedi
 Author URI: http://funkjedi.com
 License: GPLv2 or later
@@ -23,11 +23,14 @@ function acf_qtranslate_plugin_register_fields() {
 	require_once dirname(__FILE__) . '/fields/text.php';
 	require_once dirname(__FILE__) . '/fields/textarea.php';
 	require_once dirname(__FILE__) . '/fields/wysiwyg.php';
+	require_once dirname(__FILE__) . '/fields/image.php';
 
 }
 
 add_action('admin_enqueue_scripts', 'acf_qtranslate_admin_enqueue_scripts');
 function acf_qtranslate_admin_enqueue_scripts() {
+	// wp_enqueue_style('acf_qtranslate_main', plugins_url('/assets/main.css', __FILE__));
+	// wp_enqueue_script('acf_qtranslate_main', plugins_url('/assets/main.js', __FILE__));
 	wp_enqueue_style('acf_qtranslate_main', get_template_directory_uri() . '/inc/acf/add-ons/acf-qtranslate/assets/main.css');
 	wp_enqueue_script('acf_qtranslate_main', get_template_directory_uri() . '/inc/acf/add-ons/acf-qtranslate/assets/main.js');
 }
@@ -42,4 +45,21 @@ function acf_qtranslate_plugin_format_value_for_api($value) {
 	}
 
 	return $value;
+}
+
+
+add_action('plugins_loaded', 'acf_qtranslate_monkey_patch', 3);
+function acf_qtranslate_monkey_patch() {
+	global $q_config;
+
+	// http://www.qianqin.de/qtranslate/forum/viewtopic.php?f=3&t=3497
+	if (strpos($q_config['js']['qtrans_switch'], 'originalSwitchEditors') === false) {
+		$q_config['js']['qtrans_switch'] = "originalSwitchEditors = jQuery.extend(true, {}, switchEditors);\n" . $q_config['js']['qtrans_switch'];
+		$q_config['js']['qtrans_switch'] = preg_replace("/(var vta = document\.getElementById\('qtrans_textarea_' \+ id\);)/", "\$1\nif(!vta)return originalSwitchEditors.go(id, lang);", $q_config['js']['qtrans_switch']);
+	}
+
+	// https://github.com/funkjedi/acf-qtranslate/issues/2#issuecomment-37612918
+	if (strpos($q_config['js']['qtrans_hook_on_tinyMCE'], 'ed.editorId.match(/^qtrans_/)') === false) {
+		$q_config['js']['qtrans_hook_on_tinyMCE'] = preg_replace("/(qtrans_save\(switchEditors\.pre_wpautop\(o\.content\)\);)/", "if (ed.editorId.match(/^qtrans_/)) \$1", $q_config['js']['qtrans_hook_on_tinyMCE']);
+	}
 }

@@ -211,7 +211,7 @@ class acf_field_groups
 
 	<div class="wp-box">
 		<div class="inner">
-			<h3 class="h2"><?php _e("Advanced Custom Fields",'acf'); ?> <?php echo $version; ?></h3>
+			<h2><?php _e("Advanced Custom Fields",'acf'); ?> <?php echo $version; ?></h2>
 
 			<h3><?php _e("Changelog",'acf'); ?></h3>
 			<p><?php _e("See what's new in",'acf'); ?> <a href="<?php echo admin_url('edit.php?post_type=acf&info=changelog'); ?>"><?php _e("version",'acf'); ?> <?php echo $version; ?></a>
@@ -228,12 +228,8 @@ class acf_field_groups
 			</ul>
 		</div>
 		<div class="footer footer-blue">
-			<ul class="left hl">
+			<ul class="hl">
 				<li><?php _e("Created by",'acf'); ?> Elliot Condon</li>
-			</ul>
-			<ul class="right hl">
-				<li><a href="http://wordpress.org/extend/plugins/advanced-custom-fields/"><?php _e("Vote",'acf'); ?></a></li>
-				<li><a href="http://twitter.com/elliotcondon"><?php _e("Follow",'acf'); ?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -253,7 +249,7 @@ class acf_field_groups
 	<!-- acf-content-body -->
 	<div class="acf-content-body">
 		<h2 class="nav-tab-wrapper">
-			<a class="acf-tab-toggle nav-tab <?php if( $tab == 'whats-new' ){ echo 'nav-tab-active'; } ?>" href="<?php echo admin_url('edit.php?post_type=acf&info=whats-new'); ?>"><?php _e("What's New",'acf'); ?></a>
+			<a class="acf-tab-toggle nav-tab <?php if( $tab == 'whats-new' ){ echo 'nav-tab-active'; } ?>" href="<?php echo admin_url('edit.php?post_type=acf&info=whats-new'); ?>"><?php _e("What’s New",'acf'); ?></a>
 			<a class="acf-tab-toggle nav-tab <?php if( $tab == 'changelog' ){ echo 'nav-tab-active'; } ?>" href="<?php echo admin_url('edit.php?post_type=acf&info=changelog'); ?>"><?php _e("Changelog",'acf'); ?></a>
 			<?php if( $tab == 'download-add-ons' ): ?>
 			<a class="acf-tab-toggle nav-tab nav-tab-active" href="<?php echo admin_url('edit.php?post_type=acf&info=download-add-ons'); ?>"><?php _e("Download Add-ons",'acf'); ?></a>
@@ -366,7 +362,7 @@ class acf_field_groups
 		<p><?php _e("Do to the sizable changes surounding Add-ons, field types and action/filters, your website may not operate correctly. It is important that you read the full",'acf'); ?> <a href="http://www.advancedcustomfields.com/resources/getting-started/migrating-from-v3-to-v4/" target="_blank"><?php _e("Migrating from v3 to v4",'acf'); ?></a> <?php _e("guide to view the full list of changes.",'acf'); ?></p>
 		
 		<div class="acf-alert acf-alert-error">
-			<p><strong><?php _e("Really Important!",'acf'); ?></strong> <?php _e("If you updated the ACF plugin without prior knowledge of such changes, Please roll back to the latest",'acf'); ?> <a href="http://wordpress.org/extend/plugins/advanced-custom-fields/developers/"><?php _e("version 3",'acf'); ?></a> <?php _e("of this plugin.",'acf'); ?></p>
+			<p><strong><?php _e("Really Important!",'acf'); ?></strong> <?php _e("If you updated the ACF plugin without prior knowledge of such changes, please roll back to the latest",'acf'); ?> <a href="http://wordpress.org/extend/plugins/advanced-custom-fields/developers/"><?php _e("version 3",'acf'); ?></a> <?php _e("of this plugin.",'acf'); ?></p>
 		</div>
 		
 		<hr />
@@ -381,8 +377,9 @@ class acf_field_groups
 		<?php
 		
 		$items = file_get_contents( $path . 'readme.txt' );
+		$items = explode('= ' . $version . ' =', $items);
 		
-		$items = end( explode('= ' . $version . ' =', $items) );
+		$items = end( $items );
 		$items = current( explode("\n\n", $items) );
 		$items = array_filter( array_map('trim', explode("*", $items)) );
 		

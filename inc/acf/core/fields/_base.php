@@ -150,7 +150,13 @@ class acf_field
 	{
 		if( !empty($this->defaults) )
 		{
-			$field = array_merge( $this->defaults, $field );
+			foreach( $this->defaults as $k => $v )
+			{
+				if( !isset($field[ $k ]) )
+				{
+					$field[ $k ] = $v;
+				}
+			}
 		}
 		
 		return $field;
@@ -174,8 +180,6 @@ class acf_field
 		if( !empty($this->l10n) )
 		{
 			$l10n[ $this->name ] = $this->l10n;
-			
-			
 		}
 		
 		return $l10n;

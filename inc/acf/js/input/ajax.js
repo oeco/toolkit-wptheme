@@ -4,10 +4,13 @@
 	/*
 	*  acf.screen
 	*
-	*  description
+	*  Data used by AJAX to hide / show field groups
 	*
 	*  @type	object
-	*  @date	3/09/12
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
 	acf.screen = {
@@ -20,8 +23,7 @@
 		post_format		:	0,
 		taxonomy		:	0,
 		lang			:	0,
-		nonce			:	0,
-		return			:	'json'
+		nonce			:	0
 	};
 	
 	
@@ -61,13 +63,26 @@
 	
 	
 	/*
-	*  update_field_groups
+	*  acf/update_field_groups
 	*
-	*  @description: finds the new id's for metaboxes and show's hides metaboxes
-	*  @created: 1/03/2011
+	*  finds the new id's for metaboxes and show's hides metaboxes
+	*
+	*  @type	event
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/update_field_groups', function(){
+	$(document).on('acf/update_field_groups', function(){
+		
+		// Only for a post.
+		// This is an attempt to stop the action running on the options page add-on.
+		if( ! acf.screen.post_id || ! $.isNumeric(acf.screen.post_id) )
+		{
+			return false;	
+		}
+		
 		
 		$.ajax({
 			url: ajaxurl,
@@ -118,7 +133,7 @@
 						$.ajax({
 							url			:	ajaxurl,
 							data		:	{
-								action	:	'acf/input/render_fields',
+								action	:	'acf/post/render_fields',
 								acf_id	:	v,
 								post_id	:	acf.o.post_id,
 								nonce	:	acf.o.nonce
@@ -142,7 +157,7 @@
 				$.ajax({
 					url			:	ajaxurl,
 					data		:	{
-						action	:	'acf/input/get_style',
+						action	:	'acf/post/get_style',
 						acf_id	:	result[0],
 						nonce	:	acf.o.nonce
 					},
@@ -163,13 +178,18 @@
 
 	
 	/*
-	*  $(document).trigger('acf/update_field_groups'); (Live change events)
+	*  Events
 	*
-	*  @description: call the $(document).trigger('acf/update_field_groups'); event on live events
-	*  @created: 1/03/2011
+	*  Updates acf.screen with more data and triggers the update event
+	*
+	*  @type	function
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
-		
-	$('#page_template').live('change', function(){
+	
+	$(document).on('change', '#page_template', function(){
 		
 		acf.screen.page_template = $(this).val();
 		
@@ -178,7 +198,7 @@
 	});
 	
 	
-	$('#parent_id').live('change', function(){
+	$(document).on('change', '#parent_id', function(){
 		
 		var val = $(this).val();
 		
@@ -201,7 +221,7 @@
 	});
 
 	
-	$('#post-formats-select input[type="radio"]').live('change', function(){
+	$(document).on('change', '#post-formats-select input[type="radio"]', function(){
 		
 		var val = $(this).val();
 		
@@ -217,26 +237,88 @@
 	});	
 	
 	
-	// taxonomy / category
-	$('.categorychecklist input[type="checkbox"]').live('change', function(){
-		
+	function _sync_taxonomy_terms() {
 		
 		// vars
 		var values = [];
 		
 		
-		$('.categorychecklist input[type="checkbox"]:checked').each(function(){
-			values.push( $(this).val() );
+		$('.categorychecklist input:checked, .acf-taxonomy-field input:checked, .acf-taxonomy-field option:selected').each(function(){
+			
+			// validate
+			if( $(this).is(':hidden') || $(this).is(':disabled') )
+			{
+				return;
+			}
+			
+			
+			// validate media popup
+			if( $(this).closest('.media-frame').exists() )
+			{
+				return;
+			}
+			
+			
+			// validate acf
+			if( $(this).closest('.acf-taxonomy-field').exists() )
+			{
+				if( $(this).closest('.acf-taxonomy-field').attr('data-save') == '0' )
+				{
+					return;
+				}
+			}
+			
+			
+			// append
+			if( values.indexOf( $(this).val() ) === -1 )
+			{
+				values.push( $(this).val() );
+			}
+			
 		});
 
 		
+		// update screen
 		acf.screen.post_category = values;
 		acf.screen.taxonomy = values;
 
-
+		
+		// trigger change
 		$(document).trigger('acf/update_field_groups');
+			
+	}
+	
+	
+	$(document).on('change', '.categorychecklist input, .acf-taxonomy-field input, .acf-taxonomy-field select', function(){
+		
+		// a taxonomy field may trigger this change event, however, the value selected is not
+		// actually a term relatinoship, it is meta data
+		if( $(this).closest('.acf-taxonomy-field').exists() )
+		{
+			if( $(this).closest('.acf-taxonomy-field').attr('data-save') == '0' )
+			{
+				return;
+			}
+		}
+		
+		
+		// this may be triggered from editing an imgae in a popup. Popup does not support correct metaboxes so ignore this
+		if( $(this).closest('.media-frame').exists() )
+		{
+			return;
+		}
+		
+		
+		// set timeout to fix issue with chrome which does not register the change has yet happened
+		setTimeout(function(){
+			
+			_sync_taxonomy_terms();
+		
+		}, 1);
+		
 		
 	});
+	
 	
 	
 	

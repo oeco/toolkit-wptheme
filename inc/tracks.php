@@ -13,6 +13,9 @@ class Toolkit_Tracks {
 		add_action('init', array($this, 'register_post_type'));
 		add_action('acf/register_fields', array($this, 'register_fields'));
 
+		add_filter('query_vars', array($this, 'query_vars'));
+		add_action('pre_get_posts', array($this, 'pre_get_posts'));
+
 	}
 
 	function register_post_type() {
@@ -85,10 +88,30 @@ class Toolkit_Tracks {
 	function register_fields() {
 		if(function_exists("register_field_group")) {
 
+			$translate_fields = array(
+				'wysiwyg' => 'wysiwyg',
+				'text' => 'text',
+				'textarea' => 'textarea'
+			);
+
+			if(function_exists('qtrans_getLanguage')) {
+				foreach($translate_fields as &$field) {
+					$field = 'qtranslate_' . $field;
+				}
+			}
+
 			register_field_group(array (
 				'id' => 'acf_track-settings',
 				'title' => __('Track settings', 'toolkit'),
 				'fields' => array (
+					array (
+						'key' => 'field_track_review',
+						'label' => 'Track review',
+						'name' => 'track_review',
+						'type' => $translate_fields['wysiwyg'],
+						'default_value' => '',
+						'toolbar' => 'basic',
+					),
 					array (
 						'post_type' => array (
 							0 => 'track',
@@ -184,6 +207,25 @@ class Toolkit_Tracks {
 		}
 	}
 
+	function query_vars($vars) {
+		$vars[] = 'track_tutorials';
+		return $vars;
+	}
+
+	function pre_get_posts($query) {
+		if($query->get('track_tutorials')) {
+			$query->set('post_type', 'post');
+			$query->set('posts_per_page', -1);
+			$query->set('meta_query', array(
+				array(
+					'key' => 'related_tracks',
+					'value' => $query->get('track_tutorials'),
+					'compare' => 'LIKE'
+				)
+			));
+		}
+	}
+
 	function get_track_tutorials_count($track_id = false) {
 
 		global $post;
@@ -193,7 +235,7 @@ class Toolkit_Tracks {
 			'posts_per_page' => -1,
 			'meta_query' => array(
 				array(
-					'key' => 'tutorial_tracks',
+					'key' => 'related_tracks',
 					'value' => $track_id,
 					'compare' => 'LIKE'
 				)
