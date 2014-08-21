@@ -84,6 +84,55 @@ class Toolkit_Tracks {
 
 	function register_fields() {
 		if(function_exists("register_field_group")) {
+
+			register_field_group(array (
+				'id' => 'acf_track-settings',
+				'title' => __('Track settings', 'toolkit'),
+				'fields' => array (
+					array (
+						'post_type' => array (
+							0 => 'track',
+						),
+						'taxonomy' => array (
+							0 => 'all',
+						),
+						'multiple' => 1,
+						'allow_null' => 0,
+						'key' => 'field_subtracks',
+						'label' => __('Subtracks', 'toolkit'),
+						'name' => 'subtracks',
+						'type' => 'post_object',
+					),
+					array (
+						'default_value' => 0,
+						'message' => __('Featured track', 'toolkit'),
+						'key' => 'field_featured_track',
+						'label' => 'Featured',
+						'name' => 'featured',
+						'type' => 'true_false',
+						'instructions' => 'Mark this track as featured',
+					),
+				),
+				'location' => array (
+					array (
+						array (
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'track',
+							'order_no' => 0,
+							'group_no' => 0,
+						),
+					),
+				),
+				'options' => array (
+					'position' => 'normal',
+					'layout' => 'no_box',
+					'hide_on_screen' => array (
+					),
+				),
+				'menu_order' => 0,
+			));
+
 			register_field_group(array (
 				'id' => 'acf_related-tracks',
 				'title' => __('Related tracks', 'toolkit'),
@@ -113,13 +162,15 @@ class Toolkit_Tracks {
 							'order_no' => 0,
 							'group_no' => 0,
 						),
+					),
+					array (
 						array (
 							'param' => 'post_type',
 							'operator' => '==',
-							'value' => 'pick',
+							'value' => 'track',
 							'order_no' => 0,
-							'group_no' => 0,
-						),
+							'group_no' => 1,
+						)
 					),
 				),
 				'options' => array (

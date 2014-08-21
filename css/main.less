@@ -515,15 +515,45 @@ header#masthead {
 }
 
 #content.track {
-	background: @tracks;
-	padding-top: 60px;
-	color: #fff;
-	h1 {
-		color: #fff;
-		font-weight: 200;
+	.post-header {
+		padding-top: 60px;
+		background: @tracks;
+		h1 {
+			color: #fff;
+			font-weight: 200;
+		}
+		p {
+			color: #fff;
+			font-size: 18px;
+			line-height: 28px;
+		}
 	}
-	p {
-		color: #fff;
+	#track-nav {
+		height: 80px;
+		background: #f7f7f7;
+		border-bottom: 1px solid #ccc;
+		.box-shadow(0 0 5px rgba(0,0,0,0.1));
+		ul {
+			border-left: 1px solid #ddd;
+			float: left;
+			margin: 0;
+			padding: 0;
+			li {
+				margin: 0;
+				float: left;
+				line-height: 80px;
+				padding: 0 40px;
+				border-right: 1px solid #ddd;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: #555;
+				cursor: pointer;
+				&:hover {
+					background: #fff;
+					color: #333;
+				}
+			}
+		}
 	}
 }
 
