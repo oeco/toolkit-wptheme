@@ -3,7 +3,7 @@
 <?php if(have_posts()) : the_post(); ?>
 	<section id="content" class="track anti-row">
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header id="track-header" class="post-header">
+			<header id="track-header" class="post-header row">
 				<div class="container">
 					<div class="row">
 						<div class="nine columns">
@@ -21,8 +21,9 @@
 			global $post;
 			$review = get_field('track_review');
 			$tutorial_query = new WP_Query(array('track_tutorials' => $post->ID));
+			$pick_query = new WP_Query(array('track_picks' => $post->ID));
 			?>
-			<nav id="track-nav" class="row">
+			<nav id="track-nav" class="row anti-row">
 				<div class="container">
 					<div class="twelve columns">
 						<ul>
@@ -35,7 +36,9 @@
 									<span class="count"><?php echo $tutorial_query->found_posts; ?></span>
 								</li>
 							<?php endif; ?>
-							<li class="track-picks">Editor's picks</li>
+							<?php if($pick_query->have_posts()) : ?>
+								<li class="track-picks">Editor's picks</li>
+							<?php endif; ?>
 						</ul>
 					</div>
 				</div>
@@ -56,32 +59,40 @@
 							<div class="container">
 								<div class="twelve columns">
 									<div class="clearfix">
-										<h2 class="track-content-title"><?php _e('Tutorial tracks', 'toolkit'); ?></h2>
+										<h2 class="track-content-title"><?php _e('Track tutorials', 'toolkit'); ?></h2>
 										<nav class="track-content-filters">
 											<ul>
 												<li class="filter-item">
 													<div class="dropdown-filter difficulty-filter">
 														<ul>
 															<li class="label active"><?php _e('Filter by difficulty', 'toolkit'); ?></li>
-															<li class="all"><?php _e('All tracks', 'toolkit'); ?></li>
-															<li><?php _e('Easy', 'toolkit'); ?></li>
-															<li><?php _e('Medium', 'toolkit'); ?></li>
-															<li><?php _e('Hard', 'toolkit'); ?></li>
+															<li class="all"><?php _e('All tutorials', 'toolkit'); ?></li>
+															<li data-difficulty="easy"><?php _e('Easy', 'toolkit'); ?></li>
+															<li data-difficulty="medium"><?php _e('Medium', 'toolkit'); ?></li>
+															<li data-difficulty="hard"><?php _e('Hard', 'toolkit'); ?></li>
 														</ul>
 													</div>
 													<script type="text/javascript">
 														jQuery(document).ready(function($) {
 															$('.difficulty-filter .all').hide();
+															$('#track-tutorials .not-found').hide();
 															$('.difficulty-filter li').on('click', function() {
+																$('#track-tutorials .not-found').hide();
 																$(this).parent().find('li').removeClass('active');
 																if($(this).is('.all')) {
 																	$(this).hide();
 																	$(this).parent().find('.label').show();
 																	$(this).parent().find('.label').addClass('active');
+																	$('#track-tutorials .post').show();
 																} else {
+																	$('#track-tutorials .post').hide();
+																	$('#track-tutorials .post[data-difficulty="' + $(this).data('difficulty') + '"]').show();
 																	$(this).parent().find('.label').hide();
 																	$(this).parent().find('.all').show();
 																	$(this).addClass('active');
+																}
+																if(!$('#track-tutorials .post:visible').length) {
+																	$('#track-tutorials .not-found').show();
 																}
 															});
 														});
@@ -101,22 +112,33 @@
 								wp_reset_postdata();
 							endwhile;
 							?>
+							<div class="not-found">
+								<div class="twelve columns">
+									<p><?php _e('No tutorials found.', 'toolkit'); ?></p>
+								</div>
+							</div>
 						</div>
 					</section>
 				<?php endif; ?>
-				<section id="track-picks">
-					<div class="container">
-						<div class="twelve columns">
-							<p>Test</p>
+				<?php if($pick_query->have_posts()) : ?>
+					<section id="track-picks">
+						<div class="container">
+							<div class="twelve columns">
+								<p>Test</p>
+							</div>
 						</div>
-					</div>
-				</section>
+					</section>
+				<?php endif; ?>
 			</section>
 		</article>
 	</section>
 	<script type="text/javascript">
 
 		jQuery(document).ready(function($) {
+
+			if($('#track-nav li').length <= 1) {
+				$('#track-nav').hide();
+			}
 
 			changeSection($('#track-nav li:first-child').attr('class'));
 

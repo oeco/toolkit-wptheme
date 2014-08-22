@@ -20,6 +20,28 @@ class Toolkit_Tutorials {
 		$this->acf_fields();
 		add_action('wp_footer', array($this, 'category_colors_css'));
 		add_action('the_content', array($this, 'content_with_hashed_headings'));
+
+		add_filter('query_vars', array($this, 'query_vars'));
+		add_action('pre_get_posts', array($this, 'pre_get_posts'));
+	}
+
+	function query_vars($vars) {
+		$vars[] = 'track_tutorials';
+		return $vars;
+	}
+
+	function pre_get_posts($query) {
+		if($query->get('track_tutorials')) {
+			$query->set('post_type', 'post');
+			$query->set('posts_per_page', -1);
+			$query->set('meta_query', array(
+				array(
+					'key' => 'related_tracks',
+					'value' => $query->get('track_tutorials'),
+					'compare' => 'LIKE'
+				)
+			));
+		}
 	}
 
 	function register_skills_taxonomy() {

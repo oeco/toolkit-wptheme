@@ -4,7 +4,8 @@
  * Toolkit functionalities
  */
 
-require_once(TEMPLATEPATH . '/inc/tracks.php'); // Tutorials
+require_once(TEMPLATEPATH . '/inc/tracks.php'); // Tracks
+require_once(TEMPLATEPATH . '/inc/picks.php'); // Picks
 require_once(TEMPLATEPATH . '/inc/tutorials.php'); // Tutorials
 require_once(TEMPLATEPATH . '/inc/tools.php'); // Tools
 require_once(TEMPLATEPATH . '/inc/glossary.php'); // Glossary

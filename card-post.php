@@ -1,6 +1,6 @@
-<div class="row">
-	<div class="twelve columns">
-		<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-difficulty="<?php the_field('difficulty'); ?>">
+	<div class="row">
+		<div class="twelve columns">
 			<div class="post-content">
 				<header class="post-header clearfix">
 					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
@@ -68,6 +68,6 @@
 					<?php endif; ?>
 				</ul>
 			</footer>
-		</article>
+		</div>
 	</div>
-</div>
+</article>
