@@ -110,6 +110,10 @@
 	margin-right: 5px;
 }
 
+@link: #5F83B3;
+
+@tracks: #5F83B3;
+
 @boxbg: #eef0e3;
 
 @purple: #BB3CC7;
@@ -177,7 +181,7 @@ h6 {
 a,
 a:visited {
 	.transition(all .2s ease-in-out);
-	color: #ce901f;
+	color: @link;
 }
 
 .button,
@@ -414,8 +418,6 @@ header#masthead {
 		padding: 0;
 	}
 }
-
-@tracks: #5F83B3;
 
 #tracks {
 	background: @tracks;
@@ -1078,7 +1080,7 @@ nav#category-nav {
 			h5,
 			h6 {
 				font-size: 28px;
-				margin: 40px 0;
+				margin: 30px 0;
 				a {
 					text-decoration: none;
 					color: #333;
@@ -1351,14 +1353,30 @@ nav#category-nav {
 .table-of-contents {
 	.summary-item {
 		position: relative;
+		padding: 10px 0 !important;
+		.percentage {
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+			height: 2px;
+			background: @link;
+			opacity: .5;
+		}
+		a {
+			font-weight: 200 !important;
+		}
 		&:hover,
 		&.active {
+			font-weight: 600;
+			a {
+				font-weight: 600 !important;
+			}
 			&:before {
-				content: '\E762';
-				.entypo;
-				left: -35px;
-				top: 6px;
-				position: absolute;
+				//content: '\E762';
+				//.entypo;
+				//left: -35px;
+				//top: 11px;
+				//position: absolute;
 			}
 		}
 	}
@@ -1372,6 +1390,7 @@ h5,
 h6 {
 	&.summary-item {
 		position: relative;
+		margin-left: 30px !important;
 		&:hover,
 		&.active {
 			&:before {

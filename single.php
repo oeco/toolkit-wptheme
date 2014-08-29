@@ -31,7 +31,14 @@
 			</header>
 			<div class="row">
 				<div class="container">
-					<div class="nine columns">
+					<div class="three columns">
+						<aside id="summary-aside" class="post-aside">
+							<div class="aside-item row toolkit-summary">
+								<?php toolkit_summary(); ?>
+							</div>
+						</aside>
+					</div>
+					<div class="six columns">
 						<section class="post-content row">
 							<?php the_content(); ?>
 						</section>
@@ -89,7 +96,7 @@
 								<?php endif; ?>
 							</ul>
 						</footer>
-						<aside class="post-aside">
+						<aside id="main-aside" class="post-aside">
 							<div class="share">
 								<ul>
 									<li>
@@ -102,9 +109,6 @@
 										<div class="g-plusone" data-size="tall" data-href="<?php the_permalink(); ?>"></div>
 									</li>
 								</ul>
-							</div>
-							<div class="aside-item row toolkit-summary">
-								<?php toolkit_summary(); ?>
 							</div>
 							<?php if(get_field('files')) : ?>
 								<div class="aside-item row">
@@ -119,11 +123,6 @@
 							<?php if(get_field('software')) : ?>
 								<div class="aside-item row">
 									<?php toolkit_software(); ?>
-								</div>
-							<?php endif; ?>
-							<?php if(get_field('tools')) : ?>
-								<div class="aside-item row">
-									<?php toolkit_tools(); ?>
 								</div>
 							<?php endif; ?>
 							<?php if(get_field('examples')) : ?>
