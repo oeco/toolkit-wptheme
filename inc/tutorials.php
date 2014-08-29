@@ -351,8 +351,9 @@ class Toolkit_Tutorials {
 	}
 
 	function summary() {
+		wp_register_script('imagesloaded', '//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js', array('jquery'));
 		wp_register_script('hashchange', get_template_directory_uri() . '/js/jquery.hashchange.min.js', array('jquery'));
-		wp_register_script('follow-scroll', get_template_directory_uri() . '/js/jquery.followScroll.js', array('jquery'));
+		wp_register_script('follow-scroll', get_template_directory_uri() . '/js/jquery.followScroll.js', array('jquery', 'imagesloaded'));
 		wp_enqueue_script('toolkit-summary', get_template_directory_uri() . '/js/summary.js', array('jquery', 'hashchange', 'follow-scroll'));
 		?>
 		<div class="toolkit-summary">

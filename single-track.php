@@ -104,15 +104,15 @@
 								</div>
 							</div>
 						</div>
-						<div class="container">
-							<?php
-							while($tutorial_query->have_posts()) :
-								$tutorial_query->the_post();
-								get_template_part('card', 'post');
-								wp_reset_postdata();
-							endwhile;
-							?>
-							<div class="not-found">
+						<?php
+						while($tutorial_query->have_posts()) :
+							$tutorial_query->the_post();
+							get_template_part('card', 'post');
+							wp_reset_postdata();
+						endwhile;
+						?>
+						<div class="not-found">
+							<div class="container">
 								<div class="twelve columns">
 									<p><?php _e('No tutorials found.', 'toolkit'); ?></p>
 								</div>

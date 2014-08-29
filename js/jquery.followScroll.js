@@ -14,56 +14,67 @@
 
 		var stop = settings.stopFollow;
 
-		if(typeof stop === 'object' && typeof stop.element !== 'undefined') {
+		var self = this;
 
-			var elStop = stop.element.offset().top;
+		imagesLoaded(stop.element, function() {
 
-			if(typeof stop.stopAtEnd === 'boolean') {
-				if(stop.stopAtEnd) {
-					var elStop = elStop + stop.element.height();
+			if(typeof stop === 'object' && typeof stop.element !== 'undefined') {
+
+				var elStop = stop.element.offset().top;
+
+				if(typeof stop.stopAtEnd === 'boolean') {
+					if(stop.stopAtEnd) {
+						var elStop = elStop + stop.element.height();
+					}
 				}
+
+				stop = elStop;
+
 			}
 
-			stop = elStop;
+			self.each(function() {
 
-		}
+				var ghostEl = $(this).clone();
 
-		this.each(function() {
+				var offset = $(this).offset();
+				var width = $(this).width();
+				var height = $(this).height();
+				var position = $(this).css('position');
 
-			var ghostEl = $(this).clone();
+				var start = offset.top - (settings.startPadding + parseInt($('html').css('marginTop')));
 
-			var offset = $(this).offset();
-			var width = $(this).width();
-			var height = $(this).height();
-			var position = $(this).css('position');
+				ghostEl
+					.css({
+						visibility: 'hidden',
+						opacity: '0',
+						display: 'none'
+					})
+					.addClass('follow-scroll-ghost')
+					.insertBefore($(this));
 
-			var start = offset.top - (settings.startPadding + parseInt($('html').css('marginTop')));
+				var self = $(this);
 
-			ghostEl
-				.css({
-					visibility: 'hidden',
-					opacity: '0',
-					display: 'none'
-				})
-				.addClass('follow-scroll-ghost')
-				.insertBefore($(this));
+				$(window).scroll(function() {
 
-			var self = $(this);
+					if($(window).scrollTop() >= start) {
 
-			$(window).scroll(function() {
+						ghostEl.css({display: 'block'});
 
-				if($(window).scrollTop() >= start) {
+						if(typeof stop !== 'undefined' && $(window).scrollTop() <= (stop - self.height())) {
 
-					ghostEl.css({display: 'block'});
+							self.css({
+								position: 'fixed',
+								top: settings.startPadding + parseInt($('html').css('marginTop')),
+								width: width,
+								height: height
+							});
 
-					if(typeof stop !== 'undefined' && $(window).scrollTop() <= (stop - self.height())) {
+						} else {
 
-						self.css({
-							position: 'fixed',
-							top: settings.startPadding + parseInt($('html').css('marginTop')),
-							width: width,
-							height: height
-						});
+							ghostEl.css({display: 'none'});
+							self.css({position: position});
+
+						}
 
 					} else {
 
@@ -72,12 +83,7 @@
 
 					}
 
-				} else {
-
-					ghostEl.css({display: 'none'});
-					self.css({position: position});
-
-				}
+				});
 
 			});
 

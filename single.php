@@ -2,10 +2,10 @@
 
 <?php if(have_posts()) : the_post(); ?>
 	<section id="content" class="tutorial">
-		<div class="container">
-			<article  id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header class="post-header">
-					<div class="row">
+		<article  id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<header class="post-header anti-row">
+				<div class="row">
+					<div class="container">
 						<div class="nine columns">
 							<h1><?php the_title(); ?></h1>
 						</div>
@@ -18,21 +18,77 @@
 							</div>
 						</div>
 					</div>
-					<?php if(has_post_thumbnail()) : ?>
-						<div class="row">
+				</div>
+				<?php if(has_post_thumbnail()) : ?>
+					<div class="row">
+						<div class="container">
 							<div class="twelve columns">
 								<?php the_post_thumbnail('featured-image', array('class' => 'scale-with-grid')); ?>
 							</div>
 						</div>
-					<?php endif; ?>
-				</header>
-				<div class="row">
+					</div>
+				<?php endif; ?>
+			</header>
+			<div class="row">
+				<div class="container">
 					<div class="nine columns">
 						<section class="post-content row">
 							<?php the_content(); ?>
 						</section>
 					</div>
 					<div class="three columns">
+						<footer class="tutorial-specs">
+							<ul class="clearfix">
+								<?php
+								$difficulty = get_field('difficulty');
+								if($difficulty) : ?>
+									<li class="difficulty <?php echo $difficulty; ?>">
+										<span><?php _e('Difficulty', 'toolkit'); ?></span>
+										<div class="content">
+											<p class="center"><?php _e($difficulty, 'toolkit'); ?></p>
+										</div>
+									</li>
+								<?php endif; ?>
+
+								<?php
+								$tools = get_field('tools');
+								if($tools) : ?>
+									<li class="tools">
+										<span class="label"><?php _e('Tools', 'toolkit'); ?></span>
+										<span class="count"><?php echo count($tools); ?></span>
+										<div class="content">
+											<ul>
+												<?php
+												foreach($tools as $tool) :
+													global $post;
+													$post = $tool;
+													setup_postdata($post);
+													?>
+													<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+													<?php wp_reset_postdata(); ?>
+												<?php endforeach; ?>
+											</ul>
+										</div>
+									</li>
+								<?php endif; ?>
+
+								<?php
+								$skills = get_the_terms($post->ID, 'skill');
+								if($skills) : ?>
+									<li class="skills">
+										<span class="label"><?php _e('Skills', 'toolkit'); ?></span>
+										<span class="count"><?php echo count($skills); ?></span>
+										<div class="content">
+											<ul>
+												<?php foreach($skills as $skill) : ?>
+													<li><a href="<?php echo get_term_link($skill, 'skill'); ?>" title="<?php $skill->name; ?>"><?php echo $skill->name; ?></a></li>
+												<?php endforeach; ?>
+											</ul>
+										</div>
+									</li>
+								<?php endif; ?>
+							</ul>
+						</footer>
 						<aside class="post-aside">
 							<div class="share">
 								<ul>
@@ -78,8 +134,8 @@
 						</aside>
 					</div>
 				</div>
-			</article>
-		</div>
+			</div>
+		</article>
 	</section>
 <?php endif; ?>
 
