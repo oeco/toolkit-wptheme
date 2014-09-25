@@ -10,6 +10,7 @@ require_once(TEMPLATEPATH . '/inc/tutorials.php'); // Tutorials
 require_once(TEMPLATEPATH . '/inc/tools.php'); // Tools
 require_once(TEMPLATEPATH . '/inc/glossary.php'); // Glossary
 require_once(TEMPLATEPATH . '/inc/slider.php'); // Featured slider
+require_once(TEMPLATEPATH . '/inc/live-search/live-search.php'); // Live search
 
 /*
  * Toolkit theme setup
