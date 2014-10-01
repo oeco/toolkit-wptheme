@@ -33,7 +33,26 @@ if(is_front_page()) {
 
 }
 
-get_template_part('loop');
+?>
+
+<?php if(is_front_page()) : ?>
+	<section id="latest-tutorials">
+		<div class="container">
+			<div class="twelve columns">
+				<header class="sub-header">
+					<div class="clearfix">
+						<h3><?php _e('Latest tutorials', 'toolkit'); ?></h3>
+					</div>
+				</header>
+			</div>
+		</div>
+		<?php get_template_part('loop'); ?>
+	</section>
+<?php else : ?>
+	<?php get_template_part('loop'); ?>
+<?php endif; ?>
+
+<?php
 
 get_footer();
 

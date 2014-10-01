@@ -18,19 +18,22 @@
 
 	}, 200);
 
-	var display = function(container, data) {
+	var display = function(container, data, s) {
 
 		var results = $('<ul class="results clearfix" />');
+		console.log(data.found_posts);
 
-		_.each(data, function(item, i) {
+		_.each(data.posts, function(item, i) {
 
 			var type = $('<p class="type">' + livesearch.labels[item.post_type] + '</p>');
 			var title = $('<h2>' + item.title + '</h2>');
 			var desc = $('<p class="excerpt">' + item.excerpt + '</p>');
 
+			var link = $('<a href="' + item.url + '" title="' + item.title + '">' + item.title + '</a>');
+
 			var item = $('<li />')
 				.append(type)
-				.append(title)
+				.append(title.html(link))
 				.append(desc);
 
 			item.addClass('item-' + (i+1));
@@ -39,7 +42,19 @@
 
 		});
 
-		results.addClass('results-' + data.length);
+		var more = $('<li class="more" />');
+
+		if(data.found_posts > 7) {
+			var link = $('<a href="' + livesearch.siteurl + '?s=' + s + '" />');
+			link.text(livesearch.labels.more);
+			more.append(link);
+		} else {
+			more.text(livesearch.labels.no_more);
+		}
+
+		results.append(more);
+
+		results.addClass('results-' + data.posts.length);
 
 		container.find('.results').remove();
 		container.append(results);
@@ -61,7 +76,7 @@
 				if(s) {
 					query(s, function(data) {
 						if(self.val())
-							display($livesearch, data);
+							display($livesearch, data, s);
 						else
 							$livesearch.find('.results').remove();
 					});

@@ -77,6 +77,8 @@
 															$('.difficulty-filter .all').hide();
 															$('#track-tutorials .not-found').hide();
 															$('.difficulty-filter li').on('click', function() {
+																if($(this).is('.label'))
+																	return false;
 																$('#track-tutorials .not-found').hide();
 																$(this).parent().find('li').removeClass('active');
 																if($(this).is('.all')) {

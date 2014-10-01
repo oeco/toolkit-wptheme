@@ -112,7 +112,7 @@
 
 @link: #5F83B3;
 
-@tracks: #5F83B3;
+@tracks: #3C4E96;
 
 @boxbg: #eef0e3;
 
@@ -390,6 +390,21 @@ header#masthead {
 						display: block;
 					}
 				}
+				&.more {
+					width: 100% !important;
+					text-align: center;
+					color: #666;
+					text-transform: uppercase;
+					a {
+						display: block;
+						text-align: center;
+						color: #999;
+						&:hover {
+							text-decoration: none;
+							color: #fff;
+						}
+					}
+				}
 			}
 			&.results-2 {
 				li {
@@ -418,8 +433,22 @@ header#masthead {
 	}
 }
 
+.sub-header {
+	padding-bottom: 40px;
+	h3,
+	h2 {
+		float: left;
+		font-size: 20px;
+		line-height: 40px;
+		margin: 0 40px 0 0;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: #666;
+	}
+}
+
 .eyecandy {
-	background: #333;
+	background: #111;
 	color: #f0f0f0;
 	padding: 40px 0;
 	margin: -40px 0 40px;

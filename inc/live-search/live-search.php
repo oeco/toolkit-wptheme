@@ -14,11 +14,15 @@ class Toolkit_LiveSearch {
 		wp_enqueue_script('toolkit-live-search', get_template_directory_uri() . '/inc/live-search/live-search.js', array('jquery', 'underscore'));
 		wp_localize_script('toolkit-live-search', 'livesearch', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
+			'siteurl' => get_site_url(),
 			'action' => $this->ajax_action,
 			'labels' => array(
+				'more' => __('Click to view all results', 'toolkt'),
+				'no_more' => __('Showing all results', 'toolkit'),
 				'post' => __('Tutorial', 'toolkit'),
 				'track' => __('Track', 'toolkit'),
-				'tool' => __('Tool', 'toolkit')
+				'tool' => __('Tool', 'toolkit'),
+				'pick' => __('Editor pick', 'toolkit')
 			)
 		));
 	}
@@ -31,11 +35,14 @@ class Toolkit_LiveSearch {
 				'post_type' => array('post', 'pick', 'tool', 'track'),
 				'posts_per_page' => 7
 			));
-			$response = array();
+			$response = array(
+				'posts' => array(),
+				'found_posts' => $query->found_posts
+			);
 			if($query->have_posts()) {
 				while($query->have_posts()) {
 					$query->the_post();
-					$response[] = array(
+					$response['posts'][] = array(
 						'title' => get_the_title(),
 						'excerpt' => get_the_excerpt(),
 						'post_type' => get_post_type($post->ID),
