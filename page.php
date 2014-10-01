@@ -2,20 +2,22 @@
 
 <?php if(have_posts()) : the_post(); ?>
 	<section id="content">
-		<div class="container">
-			<div class="row">
-				<div class="ten columns offset-by-one">
-					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<header class="post-header row">
-							<h1><?php the_title(); ?></h1>
-						</header>
-						<section class="post-content row">
-							<?php the_content(); ?>
-						</section>
-					</article>
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<header class="sub-header row">
+				<div class="container">
+					<div class="twelve columns">
+						<h1><?php the_title(); ?></h1>
+					</div>
 				</div>
-			</div>
-		</div>
+			</header>
+			<section class="post-content row">
+				<div class="container">
+					<div class="twelve columns">
+						<?php the_content(); ?>
+					</div>
+				</div>
+			</section>
+		</article>
 	</section>
 <?php endif; ?>
 

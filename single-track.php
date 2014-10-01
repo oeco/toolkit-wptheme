@@ -5,10 +5,8 @@
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header id="track-header" class="post-header row">
 				<div class="container">
-					<div class="row">
-						<div class="nine columns">
-							<h1><?php the_title(); ?></h1>
-						</div>
+					<div class="nine columns">
+						<h1><?php the_title(); ?></h1>
 					</div>
 					<div class="twelve columns">
 						<section class="post-content row">
@@ -39,6 +37,7 @@
 							<?php if($pick_query->have_posts()) : ?>
 								<li class="track-picks">Editor's picks</li>
 							<?php endif; ?>
+							<li class="track-comments"><?php _e('Comments', 'toolkit'); ?></li>
 						</ul>
 					</div>
 				</div>
@@ -124,13 +123,22 @@
 				<?php endif; ?>
 				<?php if($pick_query->have_posts()) : ?>
 					<section id="track-picks">
-						<div class="container">
-							<div class="twelve columns">
-								<p>Test</p>
-							</div>
-						</div>
+						<?php
+						while($pick_query->have_posts()) :
+							$pick_query->the_post();
+							get_template_part('card', 'pick');
+							wp_reset_postdata();
+						endwhile;
+						?>
 					</section>
 				<?php endif; ?>
+				<section id="track-comments">
+					<div class="container">
+						<div class="twelve columns">
+							<?php comments_template(); ?>
+						</div>
+					</div>
+				</section>
 			</section>
 		</article>
 	</section>

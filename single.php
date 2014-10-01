@@ -42,6 +42,7 @@
 						<section class="post-content row">
 							<?php the_content(); ?>
 						</section>
+						<?php comments_template(); ?>
 					</div>
 					<div class="three columns">
 						<footer class="tutorial-specs">

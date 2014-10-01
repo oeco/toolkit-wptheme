@@ -121,7 +121,7 @@ function toolkit_home_slider() {
 
 function toolkit_category_header() {
 	?>
-	<div class="cat-header eyecandy">
+	<div class="cat-header sub-header">
 		<div class="container">
 			<div class="twelve columns">
 				<h2><?php single_cat_title(); ?></h2>
@@ -134,7 +134,7 @@ function toolkit_category_header() {
 
 function toolkit_archive_header() {
 	?>
-	<div class="archive-header eyecandy">
+	<div class="archive-header sub-header">
 		<div class="container">
 			<div class="twelve columns">
 				<?php if(is_post_type_archive()) { ?>

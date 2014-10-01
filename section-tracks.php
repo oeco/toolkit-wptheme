@@ -15,7 +15,8 @@ if($tracks_query->have_posts()) :
 		<div class="container">
 			<div class="row">
 				<div class="four columns">
-					<h2 class="htitle"><?php _e('Tutorial tracks'); ?></h2>
+					<p class="pre-title"><?php _e('Introducing', 'toolkit'); ?></p>
+					<h2 class="htitle"><?php _e('TRACKS'); ?></h2>
 					<p class="tracks-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et blandit quam, in dignissim justo. Morbi id egestas urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec hendrerit purus eu convallis luctus. Pellentesque non ipsum augue.</p>
 				</div>
 				<div class="four columns">

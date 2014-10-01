@@ -35,7 +35,7 @@ class Toolkit_Tracks {
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Toolkit tracks', 'toolkit'),
-			'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail'),
+			'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail', 'comments'),
 			'public' => true,
 			'show_ui' => true,
 			'show_in_menu' => true,

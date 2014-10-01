@@ -1,18 +1,15 @@
-<div class="row">
-	<div class="twelve columns">
-		<article id="<?php echo sanitize_title(get_the_title()); ?>" <?php post_class(); ?>>
-			<div class="clearfix">
-				<div class="three columns alpha">
-					<header class="post-header">
-						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-					</header>
-				</div>
-				<div class="nine columns omega">
-					<section class="post-content">
-						<?php the_field('meaning'); ?>
-					</section>
-				</div>
-			</div>
-		</article>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<div class="container">
+		<div class="three columns">&nbsp;</div>
+		<div class="four columns">
+			<header class="post-header">
+				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+			</header>
+		</div>
+		<div class="five columns">
+			<section class="post-excerpt">
+				<?php the_field('meaning'); ?>
+			</section>
+		</div>
 	</div>
-</div>
+</article>
