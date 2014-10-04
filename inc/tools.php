@@ -37,7 +37,8 @@ class Toolkit_Tools {
 			'show_in_menu' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'tools', 'with_front' => false),
-			'menu_position' => 4
+			'menu_position' => 4,
+			'yarpp_support' => true
 		);
 
 		register_post_type('tool', $args);

@@ -112,7 +112,7 @@
 
 @link: #5F83B3;
 
-@tracks: #f0f0f0;
+@tracks: #f2f2f2;
 
 @boxbg: #eef0e3;
 
@@ -443,7 +443,7 @@ header#masthead {
 		line-height: 40px;
 		margin: 0 40px 0 0;
 		text-transform: uppercase;
-		font-weight: 600;
+		font-weight: 400;
 		color: #666;
 	}
 	input[type="text"] {
@@ -868,6 +868,7 @@ nav#category-nav {
 		.post-header {
 			margin: -15px 0 10px;
 			padding: 0 0 40px;
+			border: 0 !important;
 			h2 {
 				line-height: 120%;
 				a {
@@ -1132,6 +1133,59 @@ nav#category-nav {
 				&:before {
 					content: '\2692';
 				}
+			}
+		}
+	}
+}
+
+.single #content {
+	.main-header {
+		border-bottom: 1px solid #e0e0e0;
+		h2 {
+			margin: 0;
+			font-size: 18px;
+			text-transform: uppercase;
+			a {
+				text-decoration: none;
+			}
+		}
+		.post-meta {
+			p {
+				margin: 0;
+			}
+		}
+	}
+	.post-content {
+		font-size: 18px;
+		line-height: 150%;
+	}
+	.yarpp-related {
+		margin: 0 !important;
+		h3 {
+			text-transform: uppercase !important;
+			font-size: 12px !important;
+			border-bottom: 1px solid #e0e0e0;
+			margin-bottom: 20px !important;
+			padding-bottom: 20px !important;
+		}
+		.related-posts {
+			.type {
+				font-size: 12px;
+				margin: 0;
+				text-transform: uppercase;
+			}
+			h2 {
+				font-size: 24px;
+				line-height: 28px;
+			}
+			p {
+				color: #666;
+				margin: 0;
+			}
+			li {
+				margin: 0 0 20px;
+				padding: 0 0 20px;
+				border-bottom: 1px solid #e0e0e0;
 			}
 		}
 	}

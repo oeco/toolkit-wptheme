@@ -41,7 +41,8 @@ class Toolkit_Tracks {
 			'show_in_menu' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'tracks', 'with_front' => false),
-			'menu_position' => 4
+			'menu_position' => 4,
+			'yarpp_support' => true
 		);
 
 		register_post_type('track', $args);
@@ -118,9 +119,9 @@ class Toolkit_Tracks {
 						),
 						'multiple' => 1,
 						'allow_null' => 0,
-						'key' => 'field_subtracks',
-						'label' => __('Subtracks', 'toolkit'),
-						'name' => 'subtracks',
+						'key' => 'field_parent_tracks',
+						'label' => __('Parent tracks', 'toolkit'),
+						'name' => 'parent_tracks',
 						'type' => 'post_object',
 					),
 					array (

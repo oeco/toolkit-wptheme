@@ -124,7 +124,7 @@ function toolkit_category_header() {
 	<div class="cat-header sub-header">
 		<div class="container">
 			<div class="twelve columns">
-				<h2><?php single_cat_title(); ?></h2>
+				<h1><?php _e('Tutorials covering', 'toolkit'); ?> <?php single_term_title(); ?></h1>
 				<?php echo category_description(); ?>
 			</div>
 		</div>
@@ -138,9 +138,11 @@ function toolkit_archive_header() {
 		<div class="container">
 			<div class="twelve columns">
 				<?php if(is_post_type_archive()) { ?>
-					<h2><?php post_type_archive_title(); ?></h2>
+					<h1><?php post_type_archive_title(); ?></h1>
+				<?php } elseif(is_category() || is_tag()) { ?>
+					<h1><?php _e('Tutorials covering', 'toolkit'); ?> <?php single_term_title(); ?></h1>
 				<?php } elseif(is_tax()) { ?>
-					<h2><?php single_term_title(); ?></h2>
+					<h1><?php single_term_title(); ?></h1>
 				<?php } ?>
 			</div>
 		</div>
@@ -274,3 +276,12 @@ function toolkit_social_apis() {
 	<?php
 }
 add_action('wp_footer', 'toolkit_social_apis');
+
+function toolkit_get_content_type($post_type) {
+	$types = array(
+		'post' => __('Tutorial', 'toolkit'),
+		'track' => __('Track', 'toolkit'),
+		'pick' => __('Editor pick', 'toolkit')
+	);
+	return $types[$post_type];
+}

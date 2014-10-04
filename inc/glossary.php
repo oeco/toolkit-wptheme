@@ -43,7 +43,8 @@ class Toolkit_Glossary {
 			'show_in_menu' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'glossary', 'with_front' => false),
-			'menu_position' => 4
+			'menu_position' => 4,
+			'yarpp_support' => true
 		);
 
 		register_post_type('glossary', $args);

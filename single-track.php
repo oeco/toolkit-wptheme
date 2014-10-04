@@ -122,7 +122,7 @@
 					</section>
 				<?php endif; ?>
 				<?php if($pick_query->have_posts()) : ?>
-					<section id="track-picks">
+					<section id="track-picks" class="post-loop">
 						<?php
 						while($pick_query->have_posts()) :
 							$pick_query->the_post();

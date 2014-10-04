@@ -21,7 +21,7 @@ class Toolkit_Picks {
 	function register_post_type() {
 
 		$labels = array( 
-			'name' => __('Picks', 'toolkit'),
+			'name' => __('Editor\'s Picks', 'toolkit'),
 			'singular_name' => __('Pick', 'toolkit'),
 			'add_new' => __('Add pick', 'toolkit'),
 			'add_new_item' => __('Add new pick', 'toolkit'),
@@ -38,13 +38,14 @@ class Toolkit_Picks {
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Toolkit picks', 'toolkit'),
-			'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail'),
+			'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail', 'comments'),
 			'public' => true,
 			'show_ui' => true,
 			'show_in_menu' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'picks', 'with_front' => false),
-			'menu_position' => 4
+			'menu_position' => 4,
+			'yarpp_support' => true
 		);
 
 		register_post_type('pick', $args);

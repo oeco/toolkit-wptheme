@@ -12,7 +12,7 @@ if($picks_query->have_posts()) :
 				?>
 				<li>
 					<article>
-						<h3><?php the_title(); ?></h3>
+						<h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
 						<?php the_excerpt(); ?>
 					</article>
 				</li>
