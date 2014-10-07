@@ -106,11 +106,13 @@
 							</div>
 						</div>
 						<?php
+						$GLOBALS['custom_query'] = true;
 						while($tutorial_query->have_posts()) :
 							$tutorial_query->the_post();
 							get_template_part('card', 'post');
-							wp_reset_postdata();
 						endwhile;
+						$GLOBALS['custom_query'] = false;
+						wp_reset_postdata();
 						?>
 						<div class="not-found">
 							<div class="container">
@@ -124,11 +126,13 @@
 				<?php if($pick_query->have_posts()) : ?>
 					<section id="track-picks" class="post-loop">
 						<?php
+						$GLOBALS['custom_query'] = true;
 						while($pick_query->have_posts()) :
 							$pick_query->the_post();
 							get_template_part('card', 'pick');
-							wp_reset_postdata();
 						endwhile;
+						$GLOBALS['custom_query'] = false;
+						wp_reset_postdata();
 						?>
 					</section>
 				<?php endif; ?>

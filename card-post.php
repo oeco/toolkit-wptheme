@@ -15,6 +15,7 @@
 					<?php endif; ?>
 
 					<?php
+					$tutorial_post = $post;
 					$tracks = get_field('related_tracks');
 					$tools = array();
 					$skills = array();
@@ -47,8 +48,12 @@
 										setup_postdata($post);
 										?>
 										<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-										<?php wp_reset_postdata(); ?>
 									<?php endforeach; ?>
+									<?php
+									if(!$GLOBALS['custom_query']) {
+										wp_reset_postdata();
+									}
+									?>
 								</ul>
 							</div>
 						</li>
@@ -62,14 +67,18 @@
 							<div class="content">
 								<ul>
 									<?php
-									foreach($tools as $tool) :
+									foreach($skills as $skill) :
 										global $post;
-										$post = $tool;
+										$post = $skill;
 										setup_postdata($post);
 										?>
 										<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-										<?php wp_reset_postdata(); ?>
 									<?php endforeach; ?>
+									<?php
+									if(!$GLOBALS['custom_query']) {
+										wp_reset_postdata();
+									}
+									?>
 								</ul>
 							</div>
 						</li>
@@ -78,6 +87,11 @@
 			</footer>
 			&nbsp;
 		</div>
+		<?php
+		global $post;
+		$post = $tutorial_post;
+		setup_postdata($post);
+		?>
 		<div class="four columns">
 			<header class="post-header clearfix">
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
@@ -90,5 +104,8 @@
 				<?php the_excerpt(); ?>
 			</section>
 		</div>
+		<?php
+		wp_reset_postdata();
+		?>
 	</div>
 </article>

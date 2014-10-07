@@ -91,8 +91,8 @@
 													setup_postdata($post);
 													?>
 													<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-													<?php wp_reset_postdata(); ?>
 												<?php endforeach; ?>
+												<?php wp_reset_postdata(); ?>
 											</ul>
 										</div>
 									</li>
@@ -106,14 +106,14 @@
 										<div class="content">
 											<ul>
 												<?php
-												foreach($tools as $tool) :
+												foreach($skills as $skill) :
 													global $post;
-													$post = $tool;
+													$post = $skill;
 													setup_postdata($post);
 													?>
 													<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-													<?php wp_reset_postdata(); ?>
 												<?php endforeach; ?>
+												<?php wp_reset_postdata(); ?>
 											</ul>
 										</div>
 									</li>
