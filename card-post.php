@@ -15,8 +15,26 @@
 					<?php endif; ?>
 
 					<?php
-					$tools = get_field('tools');
-					if($tools) : ?>
+					$tracks = get_field('related_tracks');
+					$tools = array();
+					$skills = array();
+					if($tracks) {
+						foreach($tracks as $track) {
+							$types = get_the_terms($track->ID, 'track-type');
+							if(!empty($types)) {
+								foreach($types as $type) {
+									if($type->slug == 'tools' || $type->slug == 'tool') {
+										$tools[] = $track;
+									} elseif($type->slug == 'skills' || $type->slug == 'skill') {
+										$skills[] = $track;
+									}
+								}
+							}
+						}
+					}
+					?>
+					<?php
+					if(!empty($tools)) : ?>
 						<li class="tools">
 							<span class="label"><?php _e('Tools', 'toolkit'); ?></span>
 							<span class="count"><?php echo count($tools); ?></span>
@@ -37,15 +55,20 @@
 					<?php endif; ?>
 
 					<?php
-					$skills = get_the_terms($post->ID, 'skill');
-					if($skills) : ?>
+					if(!empty($skills)) : ?>
 						<li class="skills">
 							<span class="label"><?php _e('Skills', 'toolkit'); ?></span>
 							<span class="count"><?php echo count($skills); ?></span>
 							<div class="content">
 								<ul>
-									<?php foreach($skills as $skill) : ?>
-										<li><a href="<?php echo get_term_link($skill, 'skill'); ?>" title="<?php $skill->name; ?>"><?php echo $skill->name; ?></a></li>
+									<?php
+									foreach($tools as $tool) :
+										global $post;
+										$post = $tool;
+										setup_postdata($post);
+										?>
+										<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+										<?php wp_reset_postdata(); ?>
 									<?php endforeach; ?>
 								</ul>
 							</div>
