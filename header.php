@@ -29,17 +29,19 @@
 </head>
 
 <body <?php body_class(); ?>>
-	
+
 	<header id="masthead" class="row">
 		<div class="container">
 			<div class="four columns">
 				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a></h1>
 			</div>
-			<div class="four columns">
+			<div class="six columns">
 				<nav id="mastnav">
 					<?php wp_nav_menu(array('theme_location' => 'header_menu')); ?>
 				</nav>
 			</div>
+			<?php
+			/*
             <div class="three columns">
                 <div class="share">
                     <ul>
@@ -52,8 +54,10 @@
                     </ul>
                 </div>
             </div>
+            */
+            ?>
 			<?php if(function_exists('qtrans_getLanguage')) : ?>
-				<div class="one columns">
+				<div class="two columns">
 					<nav id="lang">
 						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 					</nav>

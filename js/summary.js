@@ -33,7 +33,7 @@
 		});
 
 		$('.aside-item.toolkit-summary').followScroll({
-			startPadding: 40,
+			startPadding: 140,
 			stopFollow: {
 				element: $('.post-content'),
 				stopAtEnd: true
@@ -41,7 +41,7 @@
 		});
 
 		$('#main-aside').followScroll({
-			startPadding: 40,
+			startPadding: 140,
 			stopFollow: {
 				element: $('.post-content'),
 				stopAtEnd: true

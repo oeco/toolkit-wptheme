@@ -48,6 +48,7 @@ add_action('after_setup_theme', 'toolkit_setup');
 function toolkit_styles() {
 
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('toolkit-header', get_template_directory_uri() . '/js/header.js', array('jquery'));
 
 	wp_register_style('base', get_template_directory_uri() . '/css/base.css');
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
@@ -178,7 +179,7 @@ function toolkit_qtranslate_edit_taxonomies() {
 	$output = 'object'; // or objects
 	$operator = 'and'; // 'and' or 'or'
 
-	$taxonomies = get_taxonomies($args,$output,$operator); 
+	$taxonomies = get_taxonomies($args,$output,$operator);
 
 	if($taxonomies) {
 		foreach ($taxonomies  as $taxonomy ) {
@@ -231,7 +232,7 @@ function toolkit_before_colophon() {
 		<div class="container">
 			<div class="twelve columns">
 				<div id="footer-form">
-					<?php 
+					<?php
 					if(function_exists('qtrans_getLanguage'))
 						dynamic_sidebar('toolkit_footer_form_' . qtrans_getLanguage());
 					else

@@ -73,6 +73,8 @@ if($tracks_query->have_posts()) :
 
 			});
 
+			$('.track-list-item:first-child').click();
+
 		});
 	</script>
 <?php endif; ?>

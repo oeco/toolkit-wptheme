@@ -200,14 +200,30 @@ button {
 }
 
 header#masthead {
-	padding: 30px 0;
+	padding: 280px 0 60px;
 	border-bottom: 1px solid #e0e0e0;
+	background: #fff url(../img/header_2.png) bottom center repeat-x;
+	//.transition(all .4s ease-in-out);
+	&.fixed {
+		background: #fff;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		padding: 15px 0;
+		z-index: 99999;
+		h1 {
+			font-size: 30px;
+		}
+	}
 	h1 {
 		margin: 0;
 		padding: 0;
-		font-size: 26px;
-		line-height: 60px;
+		line-height: 44px;
 		color: #444;
+		font-size: 44px;
+		font-weight: 200;
+		text-shadow: 0 1px 1px rgba(0,0,0,.2);
+		.transition(all .2s linear);
 		a {
 			color: inherit;
 			text-decoration: none;
@@ -218,19 +234,32 @@ header#masthead {
 	}
 	#mastnav {
 		font-size: 16px;
-		margin-top: 20px;
+		margin: 0;
+		padding: 0;
 		font-weight: 200;
 		ul.menu,
 		.menu > ul {
 			display: table;
 			width: 100%;
+			margin: 0;
+			padding: 0;
 			> li {
 				width: 1%;
 				text-align: center;
 				display: table-cell;
+				font-weight: 600;
+				line-height: 30px;
+				padding: 13px 0;
 				> a {
 					text-decoration: none;
-					color: #666;
+					color: #333;
+					display: inline-block;
+					//background: #fff;
+					//padding: 0 10px;
+					//.box-shadow(0 1px 1px rgba(0,0,0,0.1));
+					//.border-radius(3px);
+					text-transform: uppercase;
+					font-size: 14px;
 					&:hover {
 						color: #000;
 					}
@@ -263,8 +292,13 @@ header#masthead {
         }
     }
 	#lang {
-		opacity: .7;
 		margin: 0;
+		background: #fff;
+		.box-shadow(0 1px 1px rgba(0,0,0,0.2));
+		display: inline-block;
+		padding: 5px 10px;
+		float: right;
+		.border-radius(4px);
 		ul {
 			margin: 0;
 		}
@@ -275,10 +309,11 @@ header#masthead {
 			text-align: center;
 			a {
 				display: block;
-				padding: 5px 0;
+				padding: 2px 0;
 				font-size: 9px;
 				text-decoration: none;
 				text-transform: uppercase;
+				color: #000;
 				opacity: .6;
 			}
 			&:hover,
@@ -324,7 +359,7 @@ header#masthead {
 		font-weight: 200;
 	}
 
-	:-ms-input-placeholder {  
+	:-ms-input-placeholder {
 		color: #fff;
 		font-family: "Lato";
 		font-size: 16px;
@@ -587,7 +622,7 @@ header#masthead {
 		font-weight: 200;
 	}
 	.track-list {
-		height: 250px;
+		height: 350px;
 		overflow: auto;
 		li {
 			background: rgba(0,0,0,0.1);
@@ -622,7 +657,7 @@ header#masthead {
 	.single-track {
 		background: #fff;
 		padding: 40px;
-		margin: -60px 0 0 20px;
+		margin: 0px 0 0 20px;
 		position: relative;
 		color: #333;
 		p,
@@ -639,7 +674,7 @@ header#masthead {
 			.transform(rotate(45deg));
 			background: #fff;
 			position: absolute;
-			top: 150px;
+			top: 35px;
 			left: 0;
 			margin-left: -10px;
 			margin-top: -10px;
@@ -1207,7 +1242,7 @@ nav#category-nav {
 	}
 	#content {
 		.post-header {
-			padding-top: 40px;
+			padding: 60px 0 20px;
 			border-bottom: 1px solid rgba(0,0,0,0.2);
 			margin-bottom: 40px;
 			background: #111;
@@ -1578,7 +1613,7 @@ h6 {
 	width: 100%;
 	position: relative;
 	overflow: hidden;
-	height: 500px;
+	height: 850px;
 	.container .columns {
 		position: relative;
 	}
