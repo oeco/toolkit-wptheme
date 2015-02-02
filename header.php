@@ -33,7 +33,7 @@
 	<header id="masthead" class="row">
 		<div class="container">
 			<div class="four columns">
-				<h1><a href="<?php echo home_url('/'); ?>"><?php bloginfo('name'); ?></a></h1>
+				<h1><a href="<?php echo home_url('/'); ?>"><?php // bloginfo('name'); ?>geojournalism<span class="tld">.org</span></a></h1>
 			</div>
 			<div class="six columns">
 				<nav id="mastnav">
