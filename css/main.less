@@ -899,6 +899,16 @@ nav#category-nav {
 		border-top: 1px solid rgba(0,0,0,0.2);
 		padding: 40px 0 0;
 		.transition(all .2s ease-in-out);
+		&.minimal {
+			.post-header {
+				h2 {
+					font-size: 80%;
+				}
+			}
+			.post-excerpt {
+				display: none;
+			}
+		}
 		&:hover {
 			.box-shadow(0 4px 8px rgba(0,0,0,0.1));
 			background: #fff;
