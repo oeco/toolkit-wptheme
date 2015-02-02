@@ -244,7 +244,7 @@ function toolkit_before_colophon() {
 	</div>
 	<?php
 }
-add_action('toolkit_before_colophon', 'toolkit_before_colophon');
+//add_action('toolkit_before_colophon', 'toolkit_before_colophon');
 
 function toolkit_social_apis() {
 
