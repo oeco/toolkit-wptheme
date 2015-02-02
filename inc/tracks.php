@@ -12,12 +12,12 @@ class Toolkit_Tracks {
 		add_action('init', array($this, 'register_taxonomies'));
 		add_action('init', array($this, 'register_post_type'));
 		add_action('acf/register_fields', array($this, 'register_fields'));
-
+		add_action('pre_get_posts', array($this, 'pre_get_posts'));
 	}
 
 	function register_post_type() {
 
-		$labels = array( 
+		$labels = array(
 			'name' => __('Tracks', 'toolkit'),
 			'singular_name' => __('Track', 'toolkit'),
 			'add_new' => __('Add track', 'toolkit'),
@@ -31,7 +31,7 @@ class Toolkit_Tracks {
 			'menu_name' => __('Tracks', 'toolkit')
 		);
 
-		$args = array( 
+		$args = array(
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Toolkit tracks', 'toolkit'),
@@ -203,6 +203,17 @@ class Toolkit_Tracks {
 				'menu_order' => 0,
 			));
 		}
+	}
+
+	function pre_get_posts($query) {
+
+		if($query->get('post_type') == 'track' || $query->get('post_type') == array('track')) {
+
+			$query->set('orderby', 'title');
+			$query->set('order', 'ASC');
+
+		}
+
 	}
 
 	function get_track_tutorials_count($track_id = false) {
