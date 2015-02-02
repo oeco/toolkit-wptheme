@@ -13,7 +13,7 @@
 							<h2><a href="<?php echo get_field('slider_url'); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 						<?php endif; ?>
 					</div>
-					<a class="slider-link" href="<?php echo get_field('slider_url'); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+					<a class="slider-link" href="<?php echo get_field('slider_url'); ?>" title="<?php the_title(); ?>"></a>
 				</li>
 			<?php $i++; endwhile; ?>
 		</ul>
