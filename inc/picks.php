@@ -20,7 +20,7 @@ class Toolkit_Picks {
 
 	function register_post_type() {
 
-		$labels = array( 
+		$labels = array(
 			'name' => __('Editor\'s Picks', 'toolkit'),
 			'singular_name' => __('Pick', 'toolkit'),
 			'add_new' => __('Add pick', 'toolkit'),
@@ -34,7 +34,7 @@ class Toolkit_Picks {
 			'menu_name' => __('Picks', 'toolkit')
 		);
 
-		$args = array( 
+		$args = array(
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Toolkit picks', 'toolkit'),
@@ -220,7 +220,7 @@ class Toolkit_Picks {
 			$query->set('meta_query', array(
 				array(
 					'key' => 'related_tracks',
-					'value' => $query->get('track_tutorials'),
+					'value' => $query->get('track_picks'),
 					'compare' => 'LIKE'
 				)
 			));
