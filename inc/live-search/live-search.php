@@ -32,6 +32,7 @@ class Toolkit_LiveSearch {
 		if(isset($_REQUEST['s']) && $_REQUEST['s']) {
 			$query = new WP_Query(array(
 				's' => $_REQUEST['s'],
+				'post_status' => 'publish',
 				'post_type' => array('post', 'pick', 'tool', 'track'),
 				'posts_per_page' => 7
 			));
