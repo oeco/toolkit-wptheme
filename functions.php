@@ -224,7 +224,7 @@ function toolkit_before_colophon_widget() {
 		}
 	}
 }
-add_action('widgets_init', 'toolkit_before_colophon_widget');
+//add_action('widgets_init', 'toolkit_before_colophon_widget');
 
 function toolkit_before_colophon() {
 	?>
