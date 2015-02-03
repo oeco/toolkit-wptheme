@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Toolkit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-03 14:23-0300\n"
-"PO-Revision-Date: 2015-02-03 14:24-0300\n"
+"POT-Creation-Date: 2015-02-03 19:34-0300\n"
+"PO-Revision-Date: 2015-02-03 19:35-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: cardume <contato@cardume.art.br>\n"
 "Language: pt_BR\n"
@@ -46,7 +46,7 @@ msgstr "Também neste assunto..."
 msgid "A project by"
 msgstr "Um projeto de"
 
-#: ../footer.php:24
+#: ../footer.php:22
 msgid "Supported by"
 msgstr "Apoio"
 
@@ -429,9 +429,8 @@ msgid "View track"
 msgstr "Ver trilha"
 
 #: ../inc/tracks.php:28
-#, fuzzy
 msgid "Search tracks"
-msgstr "Buscar ferramentas"
+msgstr "Buscar trilhas"
 
 #: ../inc/tracks.php:29
 #, fuzzy
