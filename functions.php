@@ -142,9 +142,39 @@ function toolkit_archive_header() {
 					<h1><?php post_type_archive_title(); ?></h1>
 				<?php } elseif(is_category() || is_tag()) { ?>
 					<h1><?php _e('Tutorials covering', 'toolkit'); ?> <?php single_term_title(); ?></h1>
+				<?php } elseif(is_tax('track-type')) { ?>
+					<h1><a href="<?php echo get_post_type_archive_link('track'); ?>"><?php _e('Tracks', 'toolkit') ?></a></h1>
 				<?php } elseif(is_tax()) { ?>
 					<h1><?php single_term_title(); ?></h1>
 				<?php } ?>
+				<nav class="header-nav">
+					<?php
+					if(is_post_type_archive('track') || is_tax('track-type')) {
+						$terms = get_terms('track-type');
+						if($terms) {
+							?>
+							<ul class="term-list">
+							<?php
+							foreach($terms as $term) {
+								$current = false;
+								if(is_tax('track-type', $term->term_id))
+									$current = true;
+								?>
+								<li class="term-item <?php if($current) echo 'current'; ?>">
+									<a href="<?php echo get_term_link($term); ?>" title="<?php echo $term->name; ?>"><?php echo $term->name; ?></a>
+								</li>
+								<?php
+							}
+							?>
+							</ul>
+							<?php
+						}
+					}
+					?>
+					<form>
+						<input type="text" name="s" value="<?php echo $_GET['s']; ?>" placeholder="<?php _e('Type your search and hit enter', 'toolkit'); ?>" />
+					</form>
+				</nav>
 			</div>
 		</div>
 	</div>

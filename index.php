@@ -31,6 +31,21 @@ if(is_front_page()) {
 
 	toolkit_archive_header();
 
+} elseif(is_search()) {
+	?>
+	<div class="archive-header sub-header">
+		<div class="container">
+			<div class="twelve columns">
+				<div class="clearfix">
+					<form>
+						<h3><?php _e('Search results for', 'toolkit'); ?>
+						<input type="text" name="s" value="<?php echo $_GET['s']; ?>" /></h3>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
 }
 
 ?>
@@ -42,22 +57,6 @@ if(is_front_page()) {
 				<header class="sub-header">
 					<div class="clearfix">
 						<h3><?php _e('Latest tutorials', 'toolkit'); ?></h3>
-					</div>
-				</header>
-			</div>
-		</div>
-		<?php get_template_part('loop'); ?>
-	</section>
-<?php elseif(is_search()) : ?>
-	<section id="latest-tutorials">
-		<div class="container">
-			<div class="twelve columns">
-				<header class="sub-header">
-					<div class="clearfix">
-						<form>
-							<h3><?php _e('Search results for', 'toolkit'); ?> 
-							<input type="text" name="s" value="<?php echo $_GET['s']; ?>" /></h3>
-						</form>
 					</div>
 				</header>
 			</div>
