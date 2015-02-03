@@ -17,7 +17,7 @@ if($tracks_query->have_posts()) :
 				<div class="four columns">
 					<p class="pre-title"><?php _e('Introducing', 'toolkit'); ?></p>
 					<h2 class="htitle"><?php _e('TRACKS'); ?></h2>
-					<p class="tracks-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et blandit quam, in dignissim justo. Morbi id egestas urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec hendrerit purus eu convallis luctus. Pellentesque non ipsum augue.</p>
+					<p class="tracks-description"><?php _e('Our thematic tracks helps you to follow the best tutorials for your level of knowledge and are tailored to your interest. You can choose a tool, a topic, a skill or even a region to explore our resources.', 'toolkit'); ?></p>
 				</div>
 				<div class="four columns">
 					<h3 class="htitle"><?php _e('Featured tracks'); ?></h3>
