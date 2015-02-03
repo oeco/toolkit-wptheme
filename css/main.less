@@ -1244,18 +1244,6 @@ nav#category-nav {
 
 .page,
 .single-post {
-	.share ul {
-		display: table;
-		width: 100%;
-		margin: 0 0 40px;
-		padding: 0;
-		li {
-			width: 1%;
-			margin: 0;
-			padding: 0;
-			display: table-cell;
-		}
-	}
 	#content {
 		.post-header {
 			padding: 60px 0 20px;
@@ -1399,6 +1387,19 @@ nav#category-nav {
 			padding: 20px 0;
 			margin: -20px 0;
 			background: #fff;
+		}
+	}
+
+	.share ul {
+		display: table;
+		width: 100%;
+		margin: 0 0 40px;
+		padding: 0;
+		li {
+			width: 1%;
+			margin: 0;
+			padding: 0;
+			display: table-cell;
 		}
 	}
 }
@@ -1751,6 +1752,18 @@ h6 {
 	.credits {
 		margin-top: 40px;
 		float: right;
+		&.project-by {
+			.credits-title {
+				line-height: 70px;
+				margin-right: 40px;
+			}
+			.c {
+				margin: 0 40px 20px 0;
+				img {
+					height: 60px;
+				}
+			}
+		}
 		.credits-title {
 			float: left;
 			line-height: 50px;

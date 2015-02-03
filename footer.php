@@ -12,15 +12,13 @@
 			</div>
 		</div>
 		<div class="ten columns">
-			<div class="credits">
+			<div class="credits row project-by">
 				<span class="credits-title"><?php _e('A project by', 'toolkit'); ?></span>
 				<a class="c" href="http://earthjournalism.net" title="Earth Journalism Network"><img alt="Earth Journalism Network" src="<?php echo get_template_directory_uri(); ?>/img/ejn_logo.png" /></a>
 
 				<a class="c" href="http://infoamazonia.org" title="InfoAmazonia"><img alt="InfoAmazonia" src="http://geojournalism.org/wp-content/uploads/2014/12/infoamazonia.png" /></a>
 			</div>
-		</div>
-		<div class="ten columns">
-			<div class="credits">
+			<div class="credits row">
 				<span class="credits-title"><?php _e('Supported by', 'toolkit'); ?></span>
 				<a class="c gfm" href="https://plus.google.com/+GoogleforMedia" title="Google for Media"><img alt="Google for Media" src="http://geojournalism.org/wp-content/uploads/2014/12/google.png" /></a>
 				<a class="c" href="http://icfj.org" title="International Center for Journalists"><img alt="International Center for Journalists" src="<?php echo get_template_directory_uri(); ?>/img/icfj.png" /></a>
