@@ -286,3 +286,7 @@ function toolkit_get_content_type($post_type) {
 	);
 	return $types[$post_type];
 }
+
+// add qtrans filter to get_permalink
+if(function_exists('qtrans_convertURL'))
+	add_filter('post_type_link', 'qtrans_convertURL');
